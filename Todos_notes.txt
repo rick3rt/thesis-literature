@@ -1,0 +1,48 @@
+========================================================================================================
+                                                TODOS
+========================================================================================================
+
+--------------------------------------------------------------------------------------------------------
+MODELLING ASSUMPTIONS               (CHAPTER 3)
+--------------------------------------------------------------------------------------------------------
+! - fill table with perturbation signals
+! - Look at 
+? - Add kirsch_identification_1997 (time varying)
+
+Done: 
+% - Zhang and Rymer intrinsic feedback
+% - Add de_gooijer-van_de_groep_estimation_2016. 
+% - create table with overview of assumptions per category, (possibly used transfer function?)
+% - time varying effects thixotropy and SRS (assumed non existent in all studies) ???
+
+
+- Add mugge_modeling_2012. EDIT: no, simulation study, show in CHAPTER 4
+
+
+
+--------------------------------------------------------------------------------------------------------
+REMOVING ASSUMPTIONS                (CHAPTER 4)
+--------------------------------------------------------------------------------------------------------
+! - assumptions to goals.
+! - which tech to reach which goal
+
+
+! - discuss Mugge 2012, agonist / antagonistic model, derived from Winters and Stark 1985.
+
+
+
+
+
+
+
+
+
+
+========================================================================================================
+                                                NOTES
+========================================================================================================
+
+
+When using US, Still simplifications / assumptions, but different
+- Finni (2006): During a contraction, the fibers in a pennate muscle rotate and there is shear strain in the interface between the muscle fibers (Gans, 1982; Huijing, 1999). 
+    -> US imaging only 2D plane, so out of plane fibre rotation is not taken into account. 

@@ -1,0 +1,133 @@
+% \documentclass[whitelogo]{tudelft-report}
+\documentclass{tudelft-report}
+
+\usepackage{natbib}
+\usepackage{changes}
+
+% USER PACKAGES
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{csquotes}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[super]{nth}
+\usepackage{hyperref}
+% CHANGE TO BIBLATEX (else; enable NATBIB in lines 62 and 658 in tudelft-report.cls)
+% \usepackage[ 
+%     backend=biber,
+%     style=nature,
+%     sorting=none,
+%     doi=false,
+%     isbn=false,
+%     url=false,]{biblatex}
+% \addbibresource{Master_Thesis.bib}
+
+% DRAFT:
+    % \usepackage{comment}
+    % \excludecomment{figure}
+    % \let\endfigure\relax
+
+
+
+ 
+% CITATION STYLE FOR READABILITY
+% \setcitestyle{authoryear,square,aysep={},yysep={;},open={[},close={]}}
+
+% CUSTOM MACROS
+\newcommand{\tred}[1][(???)\ ]{\textcolor{red}{{#1}}}
+% red text
+
+% HYPHENATION
+% \hyphenation{(co-)contraction}
+
+
+
+% DOCUMENT
+\begin{document}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+%% Uncomment following 19 lines for a cover with a picture on the lower half only
+%\title[tudelft-white]{Title}
+%\subtitle[tudelft-cyan]{Optional subtitle}
+%\author[tudelft-white]{J.\ Random Author}
+%\affiliation{Technische Universiteit Delft}
+%\coverimage{cover.jpg}
+%\titleoffsetx{10cm}
+%\titleoffsety{10cm}
+%\afiloffsetx{1cm}
+%\afiloffsety{18cm}
+%\covertext[tudelft-white]{
+%    \textbf{Cover Text} \\
+%    possibly \\
+%    spanning 
+%    multiple 
+%    lines
+%    \vfill
+%    ISBN 000-00-0000-000-0
+%}
+%\makecover
+
+%% Uncomment following 16 lines for a cover with a picture on the lower half only
+\title[tudelft-white]{Using Ultrafast Ultrasound in joint dynamics identification}
+\subtitle[tudelft-black]{Optional subtitle}
+\author[tudelft-white]{Rick Waasdorp}
+\affiliation{Delft University of Technology}
+\coverimage{Figures/tank.jpg}
+\covertext[tudelft-white]{
+    \textbf{Cover Text} \\
+    possibly \\
+    spanning 
+    multiple 
+    lines
+    \vfill
+    ISBN 000-00-0000-000-0
+}
+\setpagecolor{tudelft-cyan}
+% \makecover[split]
+
+
+%% Include an optional title page.
+\input{title}
+
+% \input{preface}
+
+\tableofcontents
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+% INPUT TEXT
+\input{text/chapter-Introduction.tex}
+\input{text/chapter-Ultrafast-Ultrasound.tex}
+\input{text/chapter-Assumptions.tex}
+\input{text/chapter-RemovingAssumptions.tex}
+ \input{text/chapter-Discussion.tex}
+ \input{text/chapter-Conclusion.tex}
+
+
+
+
+%% Use letters for the chapter numbers of the appendices.
+% \appendix
+
+%\input{appendix-a}
+
+
+% BIBLIOGRAPHY
+\bibliography{Master_Thesis}    % NATBIB
+% \printbibliography              % BIBLATEX
+
+
+\end{document}
+%fi

@@ -1,0 +1,337 @@
+% \chapter{Removing assumptions in joint dynamics system identification}
+% \chapter{Removing assumptions using ultrafast ultrasound}
+
+% ===========================================================================
+\chapter{Removing assumptions in joint dynamics system identification using ultrafast ultrasound}
+\label{chap:remove_assumptions}
+% Chapter intro: discussion on how (some of) the assumptions can be removed by using ultrafast ultrasound. 
+% Focus on IDing ankle joint dynamics, since earlier study showed that (Ossenkoppele) 
+% “The flexor and extensor muscles of the wrist have a large ratio of tendon length to muscle fibre length and this ratio is even larger for the flexor and extensor muscles of the ankle [134, Zajac].”
+
+In chapter 2, two modalities of ultrafast ultrasound that can be used in system identification were described, i.e. elastography and imaging. The previous chapter described the most important assumptions present in neuromuscular models, and discussed their implications.  This chapter will discuss in what way the two modality of ultrafast ultrasound can be used to \tred[lighten] the assumptions in the current neuromuscular models.
+
+The focus of this chapter will be on identification of ankle joint dynamics, since previous explorative work showed that the imaging of lower leg muscles and subsequent analysis of the ultrasound images is considered easier compared to e.g. the wrist joint, due to the smaller number and larger muscles in the lower leg \cite{ossenkoppele_ultrasound_2017}. Furthermore, due to the relatively large tendon slack length, as defined by \citeauthor{zajac_muscle_1989} as the ratio between tendon rest length and optimal muscle fibre length \cite{zajac_muscle_1989}, in the lower leg extensor and flexor muscles, some interesting muscle tendon interaction can be expected. 
+
+
+
+% ===========================================================================
+\section{Implication of assumptions}
+% NOTE: all assumptions are closelty interconnected, hence a clear separation is hard to do. Two main assumptions to which the others are closely related will be discussed, and the implications thereof. 
+There is a wide variety in modelling of the neuromuscular system across the studies, based on various assumptions. The wide variety in modelling approaches shows that not all studies have the same goal. Where \cite{kearney_identification_1997, mirbagheri_intrinsic_2000, de_gooijer-van_de_groep_estimation_2016, jalaleddini_subspace_2017} used a model with as little as possible \textit{a priori} knowledge, other studies attempted to build (simplified) models based on the current believes about the human physiology involved with reflexes and movement \cite{zhang_simultaneous_1997, van_der_helm_identification_2002, schouten_nmclab_2008, mugge_rigorous_2010}. The former can be seen as more phenomenological studies, which can be used to determine characteristic differences between populations, but are not as informative as the latter, where the goal is to improve the understanding of the underlying physiology and relate changes in the physiologic state to the observed behaviour. Hence, the various identified assumptions all lead to some implications for system identification of the joint dynamics, and have a great influence on what exactly can be learned from the experiment and model. Since the assumptions and their implications are for the most part closely related, these cannot be clearly separated. Therefore, the implications will be discussed based on two main assumptions, relating to muscle-tendon interaction and lumping of muscles. 
+
+
+\subsection{Muscle-tendon interaction}
+A number of system identification studies did not consider muscle-tendon interaction, and consequently related joint ankle or position directly to muscle elongation \cite{zhang_simultaneous_1997, kearney_identification_1997, mirbagheri_intrinsic_2000, van_der_helm_identification_2002, de_gooijer-van_de_groep_estimation_2016}. When it is assumed that no MTU interaction occurs, this directly implies an infinitely stiff tendon. Especially for compliant tendons, such as the Achilles tendon connected to the plantar flexors in the lower leg, significant MTU interaction can be expected, which can lead to a distorted estimation of the muscle elongation. This has consequences for the separation of intrinsic and reflexive contributions to the movement. 
+
+Not considering MTU interaction can lead to a distorted estimation of muscle elongation and subsequently distortion in the estimated contribution of intrinsic properties to movement. In general, a simple spring-damper system consisting of two parameters is used to describe the intrinsic properties of all muscles, passive tissue, tendons and joint resistance. Since these components do not all displace the same amount due to MTU interaction and different moment arms, the estimation of intrinsic properties is distorted (further discussed in \autoref{sec:rem_lumping-muscle}). 
+
+Likewise, the distorted estimation of muscle elongation has implications on the degree of proprioceptive afferent activity leading to modulation of reflexes. The muscle spindles are sensitive to muscle elongation and lengthening velocity, which in case of an infinitely stiff tendon would be overestimated, since all the elongation is ascribed to the muscle. Some studies considered either position or velocity feedback, which has proven to result in models with reasonable \textit{variance accounted for} (VAF), but presumably leads to further overestimation of a single component to reflex modulation \cite{maas_is_2009}. Furthermore, all of the studies that did not model muscle-tendon interaction also omitted the Golgi tendon organ (i.e. force) afferent feedback. Omission of force feedback can further lead to overestimation of the modelled reflexive mechanism. The choice of proprioceptive receptor modelling does not seem to have a large influence on the prediction capabilities of the model (in terms of VAF), but do not necessarily resemble the physiology behind reflex modulation. 
+% point about tendon in series, stiffness lot higher than muscle in passive state, hence due to 1/keq = 1/k1 + 1/k2 minor contribution. However, for fast movements, this is not the case.
+
+Especially the omission of GTO force feedback contradicts findings reported by the group of Sinkjaer. Af Klint et al. found strong support for contribution of GTO feedback in addition to MS feedback in adaptations to ground irregularities during locomotion \cite{klint_afferent_2009}. However, the effect of GTO and MS feedback during locomotion appeared to be stance phase dependent, where respectively mid-stance MS feedback and late-stance GTO feedback was thought to be dominant \cite{grey_positive_2007, af_klint_sudden_2009}. This emphasises the need for additional measurement data, enabling further isolation of afferent activity during other motor tasks (i.e. balance, force, position tasks). 
+
+	% \tred[expected GTO feedback? Sinkjaer, af Klint??] \textcolor{red}{\lipsum[1]}
+	% - when not considered, GTO omitted. no physiological basis refl modulation
+	%     - expected role is substantial (sinkjaer, klint... ??)
+	% - Wrong estimation leads to wrong activation signal when considering afferent feedback
+
+
+\subsection{Lumping muscle structure}
+\label{sec:rem_lumping-muscle}
+A very common simplification of the neuromuscular model is lumping of antagonistic muscle groups \cite{zhang_simultaneous_1997, van_der_helm_identification_2002, schouten_nmclab_2008, mugge_rigorous_2010}. This has as advantage that the model can be defined by less parameters compared to an antagonistic model (e.g. \cite{de_gooijer-van_de_groep_estimation_2016}). No moment arms for MTUs have to be estimated or averaged over multiple MTUs for the same function (i.e. flexion versus extension). Furthermore, the intrinsic properties (i.e. inertia, stiffness and damping) of limb, joint resistance, tendon, passive and active muscle tissue can all be lumped into a minimum of three parameters. The lumping of muscle groups with different function does however also have disadvantages when the intrinsic and reflexive effects on movements are under analysis. 
+
+% - afferent inhibity/excit contribution. Goal is to separate how the reflexive contribition is build up. with this lumping, Ia, Ib and II afferents of muscle groups contribution to modulation cannot be determined. physiology behind this remains elusive. 
+Firstly, due to lumping the afferent GTO and MS feedback from muscle groups with different functions cannot be well separated. \tred[However, the different muscle groups are always making opposite movements, so the afferent signals are expected to be opposite.] To get a better understanding of reflex modulation, a separation of the afferent signals form the different groups is required, which means that the flexors and extensors have to be lumped separately. In simulation studies (e.g. \cite{mugge_modeling_2012}) this separation is relatively straightforward, but the large number of additional parameters make this approach impractical for identification studies. Although the study of \citeauthor{de_gooijer-van_de_groep_estimation_2016} did use an antagonistic model \cite{de_gooijer-van_de_groep_estimation_2016}, fitting the model might only be possible under specific experimental conditions. This hampers the use of such an antagonistic model in system identification experiments were wide bandwidth perturbation signals are used (further discussed in \autoref{sec:rem_incompatibility}).
+
+% - nonlinear properties proprioceptors only under specific conditions. 
+Secondly, the nonlinear properties of the proprioceptors cannot accurately be modelled and identified with a fully lumped muscle model. The muscle spindles are only sensitive to muscle lengthening and Golgi tendon organs are mostly sensitive to active muscle force. For GTO force feedback a simple gain with a time delay is typically used \cite{schouten_nmclab_2008, mugge_rigorous_2010}. Apart from the nonlinearity of the GTO itself, the flexor and extensor muscles often have asymmetric force characteristics (e.g. plantar flexors stronger than dorsiflexors \cite{fukunaga_specific_1996}). Consequently, modelling the GTOs in plantar flexor and dorsiflexor muscles with a single linear gain could result in an overestimation of plantar flexor MTU force contribution to the afferent signal. The lumping in combination with no MTU interaction has as a consequence that the source of the afferent activity per muscle group \tred[can never be found]. 
+
+% - intrinsic estimated properties do not resemble underlying physoilogy, but contaminated. This does not imply that this is incorrect, but applying new tech UUS that provides specific quantitative data about specific (sub)module creates mismatch. 
+Lastly, the lumping of intrinsic parameters makes the system identification and parameter estimation easier, but does not result in parameters that have a direct physiological meaning. Furthermore, the parameters that are defined, possibly do not only contain contributions of the modelled structure, but are contaminated by contributions of other tissue, e.g. joint resistance. This is not wrong on its own, but has consequences for the usefulness of additional measurement data that has a direct physiological basis (e.g. viscoelastic properties of tendon and muscle). This incompatibility of data and current models will be further discussed in \autoref{sec:rem_incompatibility}. 
+
+% - separation of muscle groups is not that straightforward. apart from more parameters in current model doubled, muscle model, more parameters due to introduction of moment arms, more tendon, joint friction for example not as easily lumped. A view on what these implications mean for the neuromuscular model is presented in last section. 
+
+
+
+% \subsection{Overview implications and what ultrasound can mean}
+% Relate assumptions to goals? 
+% table goals, and which technology can fulfil them. 
+
+
+
+
+
+% \newpage
+% ===========================================================================
+\section{Assessing intrinsic properties -- Elastography}
+One possibility that ultrafast ultrasound offers is performing quantitative elastography on various tissue types. Two different methods, supersonic shear wave imaging (SSI, purely elastic, see \autoref{sec:us_ssi}) and shear wave spectroscopy (SWS, viscoelastic, see \ref{sec:us_sws}) have been used in various studies, to assess the mechanical properties of tendon and muscle under various conditions. This section will show some of these studies and discuss their methods and limitations. Finally, it will be discussed in what way elastography can be of value in system identification studies. 
+
+
+
+\subsection{Muscle properties}
+%There is some variation in the methods used to assess the mechanical properties of the muscle. 
+
+% GENNISSON 1
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=.90\linewidth]{Figures/elastography/gennisson_dispersion2.png}
+	\caption{Shear wave speed and estimated mechanical properties for the human \textit{brachialis} muscle under various loads, with elbow flexion of \SI{90}{\deg}. \textbf{(a,b)} Shear phase velocity over frequency under various loads for one subject, \textbf{(a)} parallel to muscle fibres and \textbf{(b)} perpendicular to muscle fibres. \textbf{(c,d)} Estimated mechanical properties using a Voigt model under increasing load, \textbf{(c)} shear elasticity and \textbf{(d)} shear viscosity. Figure adapted from \citet{gennisson_viscoelastic_2010}.}
+	\label{fig:rem_gennisson_dispersion_force}
+\end{figure}
+
+
+\citeauthor{gennisson_viscoelastic_2010} used both SSI and SWS to assess the mechanical properties of the \textit{brachialis} muscle under various conditions \cite{gennisson_viscoelastic_2010}. The elastic properties were assessed parallel and perpendicular to the muscle fibres, with the elbow at \SI{90}{\deg} flexion under isometric contraction of the \textit{brachialis}, with loads increasing from 0 to \SI{5}{\kilogram} with increments of \SI{1}{\kilogram}. It was found that shear modulus $\mu$ increased with contraction level from 4.0 to \SI{36.6}{\kilo\pascal} along the fibres and from 2.3 to \SI{4.0}{\kilo\pascal} perpendicular to the fibres, highlighting the anisotropic properties of muscle tissue. SWS was also performed under the same load conditions as SSI. It was found that the shear wave phase velocity only increased slightly with frequency parallel to the muscle fibres (similar to findings \citet{deffieux_shear_2009}), but strongly perpendicular to the fibres (see \autoref{fig:rem_gennisson_dispersion_force}a,b). The muscle can thus be considered non-dispersive parallel to the fibres under these conditions (elbow flexion \SI{90}{\deg}). SSI was also performed to assess the passive properties of the muscle, by increasing the elbow angle from 90 to \SI{165}{\deg} with steps of \SI{25}{\deg}. It was found that the shear wave group velocity increased strongly from \SI{2.7}{\meter\per\second} to \SI{5.7}{\meter\per\second} along the fibres, and slowly from \SI{1.2}{\meter\per\second} to \SI{1.8}{\meter\per\second} perpendicular to the fibres (\autoref{fig:rem_gennisson_dispersion_passive}a). The viscoelastic parameters resulting from the dispersion analysis are depicted in \autoref{fig:rem_gennisson_dispersion_passive}b. %It can be seen that the shear elasticity increases strongly with elbow angle, which is in correspondence 
+
+
+The SWS method has been used to compare the dispersion in stroke-paretic muscles to contralateral muscles during passive \cite{rasool_altered_2016} and active \cite{saadat_frequency_2018} conditions. In study of \citeauthor{rasool_altered_2016}, the biceps muscle was fixed to an elbow flexion angle of \SI{120}{\deg} in a passive state (validated by EMG activity measurement), and SSI and SWS measurements were conducted. It was found that the group velocity was significantly higher in stroke-affected muscles, indicating increased stiffness. Furthermore, a difference in dispersion was found, the phase velocity was observed to be higher over all frequencies in stroke-affected muscles (not significant) \cite{rasool_altered_2016}. \citeauthor{saadat_frequency_2018} measured the shear wave dispersion under active and passive conditions (0\%, 10\%, 20\% and 30\% of MVC), with elbow flexion of \SI{150}{\deg}. It was found that the shear wave phase velocity was higher across all frequencies in the contralateral muscles with respect to the paretic muscles (see \autoref{fig:saadat_dispersion_paretic}). In the passive condition, the opposite was found, in correspondence with the findings of \citeauthor{rasool_altered_2016} \cite{saadat_frequency_2018}. In neither of these two studies a rheological model was fit to the dispersion curves.
+
+
+%In 2011, Arda and collaborators (5) performed a study of SWE that included the gastrocnemius and masseter muscles and the supraspinatus and Achilles tendons, in 127 healthy volunteers of both sexes in both the longitudinal and transverse planes, to determine the normal measurement values of different healthy tissues. 
+
+
+
+% GENNISSON 2
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=.95\linewidth]{Figures/elastography/gennisson_dispersion_passive.png}
+	\caption{\textbf{(a)} Shear group velocity in the  \textit{biceps brachii} (ROI 1) and \textit{brachialis} (ROI 2) along and perpendicular to the muscle fibers, for different levels of elbow extension. \textbf{(b)} Estimated viscoelastic parameters for the \textit{brachialis} muscle. Figure adapted from \citet{gennisson_viscoelastic_2010}.}
+	\label{fig:rem_gennisson_dispersion_passive}
+\end{figure}
+
+% SAADET
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=.95\linewidth]{Figures/elastography/saadat_dispersion_paretic.png}
+	\caption{Shear wave phase velocity in the biceps muscle over frequency (elbow flexion \SI{150}{\deg}), for multiple levels of contraction. It can be seen that in all the active conditions the phase velocity is lower over all frequencies for paretic muscles compared to the contralateral muscles. Figure adapted from \citet{saadat_frequency_2018}.}
+	\label{fig:saadat_dispersion_paretic}
+\end{figure}
+
+
+\subsubsection{Conflicting reports on muscle dispersion}
+In the studies by \citeauthor{deffieux_shear_2009} (\textit{biceps brachii}, experimental conditions not described) and \citeauthor{gennisson_viscoelastic_2010} (\textit{brachialis}, elbow \SI{90}{\deg} flexion) the muscle was found to be nondispersive parallel to the fibres (both studies from the group of Tanter and Fink) \cite{deffieux_shear_2009, gennisson_viscoelastic_2010}. By contrast, \citeauthor{rasool_altered_2016} and \citeauthor{saadat_frequency_2018} did found high dispersion when performing SWS parallel to the muscle fibres \cite{rasool_altered_2016, saadat_frequency_2018}. A later study by \citeauthor{rasool_shear_2018}, comparing stroke-affected to contralateral muscles, also reports high dispersion (\textit{biceps brachii}, passive condition, 90, 120 and 150 \si{\deg} elbow flexion) \cite{rasool_shear_2018}. Other than these studies, there are no more studies that performed a dispersion analysis on the SSI measurements from muscles. Furthermore, \citeauthor{rasool_shear_2018} reported a great influence of local minima in optimization procedure (Matlab \texttt{lsqnonlin}, least squares) on estimation of $\mu_1$ and $\mu_2$ parameters of Voigt model to dispersion curves \cite{rasool_shear_2018}. 
+
+\tred[discussion parameter fit analysis?]
+
+
+
+\subsubsection{Estimation of individual muscle force}
+\citeauthor{bouillard_estimation_2011} used SSI to estimate individual muscle force in the \textit{abductor digitimi minimi} and \textit{first dorsal interosseous} muscles, and their results were validated by EMG to force conversion methods \cite{bouillard_estimation_2011}. These muscles were chosen because these are muscles without synergists for abduction. Consequently, the measured torque could be related to the measured EMG activation. Subjects were asked to perform ramp contraction from 0\% to 30\% MVC for the \textit{abductor digitimi minimi} and 0\% to 60\% MVC for the \textit{first dorsal interosseous}, in a time of \SI{30}{\second}. In a second trial, subjects had to randomly move their finger, while keeping the MVC between the same level as the ramp contractions. EMG and SSI measurements were done on two separate days (separated by 45 hours). The SSI measurements were performed at \SI{1}{\hertz}, which was the maximum sample frequency of the SSI equipment (Aixplorer version 4.2, Supersonic Imagine, Aix en Provence, France). Two separate simple linear models were fitted to estimate the abduction torque from either shear elastic modulus or EMG. It was found that the model based on SSI measurements was significantly more accurate in predicting torque than the EMG model. 
+A later study by \citeauthor{ates_muscle_2015} also found a linear relation between shear elastic modulus (measured with SSI at \SI{1}{\hertz}) and muscle torque, but over the entire range of voluntary contraction of the \textit{abductor digitimi minimi} (i.e. 0\% to 100\% MVC) \cite{ates_muscle_2015}. 
+
+
+\subsubsection{Validation of mechanical properties}
+The mechanical properties assessed with elastography cannot be validated \textit{in vivo}, but \citeauthor{eby_validation_2013} conducted a validation study by performing both SSI and traditional material testing on four porcine \textit{brachialis} whole-muscle tissue specimens \cite{eby_validation_2013}. The muscles were stretched at a rate of $\sim{}1.15$\% $L_0$ per second, up to a maximum strain of 15\% $L_0$, during which SSI measurements were performed. The mean shear modulus was found to be \SI{5.81}{\kilo\pascal} at $L_0$ (corresponding to \SI{90}{\deg} elbow flexion), which is similar to the value found by \citeauthor{gennisson_viscoelastic_2010}. The Youngs's modulus was derived from the stress-strain curve. Next, a generalized linear model regression was done, resulting in a mean fit over all the tissue samples of $\mu = 0.1944 E - 3.6760$, with $\mu$ the shear modulus and $E$ the Young's modulus, both in \si{\kilo\pascal} ($p<0.0001$, $R^2 = 0.9374$). The muscle tissue specimens were assumed purely elastic, hence no dispersion analysis was performed and the viscoelastic properties were not assessed.
+
+
+%Discussion: application to sysID
+%When performing SSI, when transducer is not parallel to fibers, $\mu = \rho V_g^2$ does no longer hold (anisotropy) \cite{eby_validation_2013}.
+
+
+
+
+\subsection{Tendon properties}
+Assessing the mechanical properties of tendinous tissue is more complex than other tissue for multiple reasons. (1) Tendon tissue is stiff, resulting in high shear wave speeds (10-20 \si{\meter\per\second} \cite{cortes_continuous_2015, helfenstein-didier_vivo_2016}) which requires imaging with a very high framerate to track the shear wave propagation. (2) The shear wave wavelength ($\lambda {\sim}\SI{25}{\milli\meter}$) for the frequency range used in SSI (300-800 \si{\hertz}) is greater than the mean tendon thickness (Achilles tendon $h{\sim}\SI{4}{\milli\meter}$) \cite{brum_vivo_2014}. This results in guidance of the shear waves along and across the tendon due to successive reflections at the tendon boundaries. As a consequence, the group velocity of the shear wave is not necessarily linked to the actual shear modulus, as assumed in SSI. For this reason, a shear wave dispersion analysis in combination with a shear wave guidance model is required to assess the mechanical properties of tendons. 
+
+\subsubsection{Dispersion analysis with shear wave guidance model}
+\citeauthor{brum_vivo_2014} described a novel method to determine the viscoelastic properties of the Achilles tendon based on a transverse isotropic model, whereas in `conventional' SWS, the medium is assumed to behave fully isotropic \cite{brum_vivo_2014}. This transverse isotropic model accounted for the anisotropy in the tendon and guided shear wave propagation. The transverse isotropic properties of the tendon were described by seven parameters, of which many were assumed based on \textit{in vitro} bovine Achilles tendon data \cite{kuo_elastic_2001}. It was found that the elasticity can be determined independently of the viscosity in the parallel direction from the shear wave phase velocity dispersion curve. To determine the viscosity, the attenuation dispersion of the shear wave has to be measured. However, unbiased measurement of attenuation is hard due to effects of diffraction, and was not attempted. In the perpendicular direction, both elasticity and viscosity could be determined from the phase velocity dispersion curve. 
+
+This method was used by \citeauthor{helfenstein-didier_vivo_2016} to assess the effect of tendon stretching on shear elasticity, assess the variation of probe location (proximal versus distal) and compare the new method to conventional SSI \cite{helfenstein-didier_vivo_2016}. \autoref{fig:helfenstein_disperson_angle}a shows the dispersion curves for various ankle angles for one subject. It was found that the shear modulus significantly increased with ankle dorsiflexion ($p\leq 0.001$). The estimated shear modulus was found significantly higher with the probe at the proximal location compared to distal, regardless of ankle angle. It was found that SSI compared to the new method underestimates the shear modulus, depicted in \autoref{fig:helfenstein_disperson_angle}b and c. 
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{Figures/elastography/helfenstein_dispersion_angle.png}
+	\caption{\textbf{(a)} Shear wave speed versus frequency for various ankle angles, negative angle denotes plantar flexion. Measured phase velocities for frequencies smaller than $c/h$ were removed, where $c$ is the measured shear wave speed and $h$ the mean tendon thickness (which was estimated from B-mode images). \textbf{(b)} Shear modulus assessed with SSI compared to the new method of \cite{brum_vivo_2014} for different plantar flexion ankle angles, \textbf{(c)} the linear relationship found between the two methods (correlation coefficient of $r=0.844$). Figure adapted from \citet{helfenstein-didier_vivo_2016}.}
+	\label{fig:helfenstein_disperson_angle}
+\end{figure}
+
+\subsubsection{Dispersion analysis without shear wave guidance model}
+\citeauthor{cortes_continuous_2015} did also perform a dispersion analysis, however they did not generate shear waves by acoustic radiation force, but used an external actuator in contact with the Achilles tendon via the skin \cite{cortes_continuous_2015}. Furthermore, no shear wave guidance model was used, and thus the viscoelastic properties were determined from the measured dispersion curves (normal SWS method, in conflict with \cite{brum_vivo_2014, helfenstein-didier_vivo_2016}). Using the external actuator, a limited number of frequencies could be excited, from which the dispersion curves could be measured. The induced shear waves were imaged using ultrafast ultrasound. A strong viscoelastic effect was found in the tendon (ankle angle \SI{0}{\deg}), mean values of seven participants were reported to be $\mu_1 = 71.7 \pm 47.2$ \si{\kilo\pascal} and $\mu_2 = 64.6 \pm 13.3$ \si{\pascal\second}. 
+
+
+
+%\subsubsection{Validation tendon properties}
+%Although the tendon is known to behave viscous \cite{seynnes_ultrasound-based_2014}, many studies perform `conventional' SSI measurements on tendons (i.e. merely looking at shear wave group velocity, no phase velocity dispersion analysis). 
+%\cite{haen_shear_2017}
+
+
+
+
+
+	
+	%Tendon rate dependency
+	%====================================
+	%"An important, often overlooked, physiological consideration is the viscous nature of tendons." \cite{seynnes_ultrasound-based_2014}
+	%". In humans, a few studies, yet not all (49, 76), have confirmed the rate dependence of tendon mechanics in vivo (42, 74, 91) and in vitro (93); nonetheless, this property remains largely overlooked." \cite{seynnes_ultrasound-based_2014}
+	%
+	%
+	%Nonlinear Force-elongation
+	%====================================
+	%"Tendon viscoelastic properties, and in particular the nonlinear force-elongation behavior of this tissue, is connected to another methodological challenge: the standardization of stiffness calculation. " \cite{seynnes_ultrasound-based_2014}
+	%
+	%
+	%Tendon (+=muscle) moment arms + force estimation
+	%====================================
+	%"Unlike in vitro experiments or invasive procedures, the force exerted during in vivo tendon testing can only be estimated."
+	%" Like all measurements performed in vivo, the estimation of moment arm length is bound to a number of assumptions that do not invalidate the use of these techniques. " \cite{seynnes_ultrasound-based_2014}
+	
+
+
+
+
+
+
+%\subsection{Sources of variation in elastography assessed properties}
+%\tred[variation / error ?]
+%
+%\citet{kot_elastic_2012}
+%
+%\citet{koo_factors_2015}
+%
+%\citet{ewertsen_evaluation_2016}
+
+
+
+
+\subsection{Elastography in system identification}
+The measurement of the (visco)elastic properties of muscle and/or tendon using elastography might be useful to estimate the force in the MTU, which can then be used to estimate the force in the muscle by using the material model to relate measured displacements to stress. Ultrafast ultrasound has enabled the development of two elastography methods, SSI and SWS. For the former, numerous studies have been conducted to measure the shear wave group velocity in a wide variety of tissues, including muscle and tendon. The latter is used only in a limited number of studies. This section first discusses the reliability of the various studies, followed by a proposed view on how these techniques can be used in system identification experiments. 
+
+	%		- application of these shear wave speeds to system identification is not trivial. 
+	%- study that estimates muscle force only demonstrated in very strict experimental conditions, hence questionable if applicable to other muscle groups. should first be demonstrated.
+	%- limited frequency of shear modulus estimation, can be increased by using experimental settings. However, fast movement of muscles during identifying reflexes may distort estimation of shear wave velocity, is not demonstrated before. 
+The estimation of muscle forces using SSI (\citet{bouillard_estimation_2011}) shows a linear relation between shear modulus and torque, albeit under very specific experimental conditions. During the very slow contraction ramps, SSI measurements at \SI{1}{\hertz} were performed, since this was the maximum sampling frequency of the used equipment. This is too slow for system identification experiments, however, it is known that SSI measurements can be performed at a much higher sampling frequency (by analysing the RF data after the experiment, see \autoref{sec:us_ssi} and \cite{bercoff_supersonic_2004}, sufficient memory assumed). The slow contraction ramps show that it is possible to perform SSI while the muscle is moving slowly, but the contraction velocities encountered during reflexive activity are much higher. SSI measurements in comparable high velocity conditions have not been reported, and are probably impossible to conduct due to distortion of the shear wave on one hand, and the movement of speckles to track the shear wave propagation on the other hand (contribution to movement from both shear wave and contraction, inseparable). Moreover, the method has not been tested for synergistic muscles, so the usability of the method in synergistic muscles remains unknown. 
+%estimation of muscle force using SSI \cite{bouillard_estimation_2011,ates_muscle_2015} at 1 Hz only, not usable in sys ID. however, as demonstrated in SSI section, can be performed much faster if beamforming and analysis is not done in real time (which the aixplorer does). Hence, then the estimation of muscle force would be possible at X Hz. However, the muscle is moving a lot faster in sys id experiments than under the conditions of \cite{bouillard_estimation_2011,ates_muscle_2015}, resulting in distorted SSI measurement? Furthermore, this method has not yet been tested in synergistic muscle pairs.
+
+
+%	- assessment of mechanical parameters can be done before sys id experiment, on muscle or tendon. 
+Though the mechanical properties presumably cannot be assessed during the identification experiment, they can be measured prior and after the experiment in tendon and/or muscles. There is however quite some difference in the used elastography methods and reported material parameters across studies, and the results cannot be validated \textit{in vivo}. Given these published results, the applicability of SSI and SWS to quantitatively assess the muscle or tendon properties for system identification purposes remains questionable at the moment. 
+
+	%- two methods (SSI SWS)
+%- different reports per method
+%- lots of different experimental conditions make results difficult to compare. variety in how results are reported make it difficult to compare. Furthermore differences in subject groups used per study, individual differences subjects make different methdos hard to compare
+Especially regarding SWS, there is quite some difference in the used methods to assess the viscoelastic properties of muscle and tendon. There is a lot variety in the experimental conditions used in each of these studies, making it hard to compare them. Furthermore, not every study obtains the same material parameters. For example, where \cite{brum_vivo_2014, helfenstein-didier_vivo_2016} reports that the viscosity of the tendon parallel to the tendon fibres cannot be estimated from the dispersion curves, \cite{cortes_continuous_2015} reports values for both viscosity and elasticity. \tred[Moreover, it is hard to assess the influence of individual differences in the tested subjects, when mean values with standard deviation over all the participants are reported, hampering further comparison of the studies using SWS.]
+
+%- conversion of shear wave velocity to material parameters introduces a lot of assumptions. 
+%- SSI relatively easy (Eby), but different 5G = E intead of 3 like in assumed elastic model. 
+%- SWS conversion to stiffness not reported before.
+%- this makes it perhaps more a qualitative method, based on the rheological model. measured shear wave speed and dispersion are only things that can be seen as qualitative measurements. 
+In both SSI and SWS, the tissue is assumed to behave according to a certain rheological model. In case of SSI, this is a linear elastic isotropic model. Using this material description, it is possible to estimate the shear elastic modulus from the shear wave group velocity via $\mu=\rho c_g^2$. Following this model, the Young's modulus is equal to $E = 3\, \mu$ (see \autoref{sec:us_ssi}). However, simultaneous material testing and SSI of brachialis swine muscles resulted in a linear fit where $E \approx 5\mu$ \cite{eby_validation_2013}. This shows that SSI can perform well in comparing the shear wave velocity from subject to subject, but results in a more qualitative measurement, than an quantitative assessment of material properties. For SWS, a similar study like \cite{eby_validation_2013} to compare the viscoelastic muscle properties to mechanical tests is not reported. \tred[Furthermore, the estimation of muscle force from the shear moduli described by the Voigt model and measured muscle or tendon elongation has not been shown in literature before. ]
+% the conversion of the Voigt model parameters shear elasticity and shear viscosity to mechanical parameters to estimate muscle forces has not been reported.
+
+
+%		- assessment of muscle properties hard, studies have done it for passive properties of the muscle. Active properties are dependent on activation level, fibre length and velocity, making the estimation of the properties only possible for the force length curve, not force velocity. This limits its usability in sys id experiments.
+%		- Alternatively, elastography can be done on tendon, since this is passive material, and thus is not dependent on activation level. However, the tendon is known to behave rate dependent, and has nonlinear force-elongation properties \cite{seynnes_ultrasound-based_2014}. For tendon the same limitation applies as for muscle, that the rate dependence cannot be easily determined. Furthermore, due to the limited thickness of tendons, shear waves reflect at boundaries for low frequencies, distorting the estimation of the viscoelastic properties. 
+The reported shear wave velocities for the passive muscle over a range of joint angles show a good correspondence to the expected increase in stiffness \cite{gennisson_viscoelastic_2010}, based on the passive muscle tissue properties \cite{zajac_muscle_1989}. The active properties show a lot more variation (conflicting reports on dispersion), and are more difficult to identify, since they have to be measured for different joint angles and activation levels. Since elastography cannot be performed during eccentric or concentric contraction, the force-velocity characteristic cannot be obtained using elastography. This means that for a muscle, elastography could in theory only be used to separate the active and passive tissue contributions to stiffness in isometric and passive conditions. In dynamic conditions, as presented during system identification experiments, substantial MTU interaction is expected, which further limits the usability of the passive material parameters, because of the many possible combinations of joint angle, activation level and ratio between tendon and muscle length. Although the tendon has only passive properties (i.e. does not depent on activation signal), aforementioned reasons also limit the use of assessed tendon properties, of which the often neglected rate dependency cannot be assessed \cite{seynnes_ultrasound-based_2014}. 
+
+
+
+
+% ===========================================================================
+\section{Separating proprioceptive contribution -- imaging}
+Besides elastography, normal ultrafast imaging can be used to track the elongation of the muscle fibres. 
+
+This has already been demonstrated in various studies, and there are various tracking algorithms developed. 
+
+\citeauthor{deffieux_ultrafast_2006} were the first to use ultrafast ultrasound to image the contraction of muscle fibres in vivo upon electrical stimulation (\SI{30}{\volt} for \SI{400}{\micro\second}) \cite{deffieux_ultrafast_2006}. The \textit{biceps brachii} was imaged at \SI{1500}{\hertz}, and using the cross correlation between two successive images the local particle velocity could be assessed. With this method a maximum particle velocity of about \SI{0.7}{\centi\meter\per\second} was found. The fibre length per frame was not assessed, and due to the fusiform shape and limited size of the ultrasound probe, it is not possible to determine the absolute length of the fibres \cite{hodges_measurement_2003}. Only relative length changes can be assessed for the \textit{biceps brachii}. 
+
+
+
+
+expectation? Klint? Sinkjaer? GTO expected more than MS? Timing? Loram? 
+
+No studies using ultrafast ultrasound for imaging of tendon or muscle displacement. Studies using conventional B-mode ultrasound in abundance.
+
+Imaging can be done at three locations
+\begin{itemize}
+    \item Muscle belly to obtain fibre length (e.g. \cite{klint_afferent_2009})
+    \item Muscle tendon junction, fibre and tendon length (e.g. \cite{klint_afferent_2009})
+    \item Tendon to obtain tendon elongation 
+\end{itemize}
+Due to availability ultrasound equipment, and interference us waves (?) ultrasound performed at one place. By purely imaging, US can result in tendon length, fibre length, or both. These measurements can be used to estimate the lengthening velocities. 
+However, at one location, only agonist muscles can be imaged, not both at the same time with limited equipment.  
+
+
+
+\textbf{assumptions to remove}
+\begin{itemize}
+	\item Proportion of contribution of afferent and voluntary can be modelled. Model origin of EMG signal.
+	\item one MTU infinitely stiff tendon
+	\item sources of afferent feedback \tred
+\end{itemize}
+
+
+
+\newpage
+
+
+% ===========================================================================
+\section{Incompatibility ultrasound measurement with current NMC models}
+\label{sec:rem_incompatibility}
+The currently published neuromuscular models almost all share the assumptions of lumping all muscles (see \autoref{sec:rem_lumping-muscle}). This lumped structure greatly helps in reducing the number of parameters in the model, but induces a large gap between the defined parameters and their physiological meaning. With ultrafast ultrasound, it is possible to acquire data that is closer to the physiology (i.e. proportional), and therefore not directly compatible with the current parametric neuromuscular models. To use the acquired data to fit a model, either a substantial change in the model structure has to be made, or the experimental conditions have to be adapted. The specific model changes or exact experiment design is beyond the scope of this literature survey, however, some thoughts will be shared.
+
+%When adding the UUS technology to the system identification experiments, this asks for a change in the experiment design and/or the model design. elongation of muscle or tendon measurements cannot be plugged in as input to the currently used model structures (agonist and antagonist lumped). Therefore, or the experiment has to be designed differently, or the model has to be adapted.
+
+
+
+\subsection{Change in experiment design}
+With a single ultrafast ultrasound device, only one side of a limb can be imaged, either the flexor or the extensor. Consequently, it is not trivial to identify the complete neuromuscular system. As a simplification, only one group of muscles could be identified, by avoiding activation of the antagonistic muscle group. This would mean that the joint has to be disturbed at a sufficient distance from the neutral position, to ensure that only the agonist can contribute to the rejection of the disturbance. To validate that the antagonist is not active during the experiment, EMG measurements can be used, as demonstrated in e.g. \cite{kearney_identification_1997, mirbagheri_intrinsic_2000}. The antagonistic MTUs do indeed still have a passive contribution to the movement, which still has to be identified. 
+
+Alternatively, experiments similar to those of \citeauthor{de_gooijer-van_de_groep_estimation_2016} can be conducted \cite{de_gooijer-van_de_groep_estimation_2016}. In these experiments, a sudden strain is applied (participant asked to not interfere), and only reflexive activity in combination with passive properties are expected. These kind of transient experiments do not allow for the classical system identification (perturb system over wide band of frequencies), but could provide a lot of insight on the contribution of MS and GTO feedback, and subsequent force generation. The nonlinear model of \cite{de_gooijer-van_de_groep_estimation_2016} could relatively easy be expanded with an afferent feedback model, and could be useful to explain the observed movement based on the with ultrasound measured tendon or muscle elongation. 
+%, apply strain, no voluntary activity, and try to fit reflex activity to activation of single muscle group (flexor or extensor group). Transient experiments under condition, no real sys ID, but could provide more insight in the contribution of GTO and MS
+%Experimental conditions in which antagonistic muscle is not active (e.g. \cite{kearney_identification_1997, mirbagheri_intrinsic_2000}). Could be validated by EMG measurement. E.g. only positive torque, so that only agonist muscle is activated. Think of experimetal conditions such that the current model can be used to identify the properties of the agonist muscle, and tendon ... to identify the joint dynamics under those conditions. Real identification experiment over wide band of frequencies. No need to change the model structure (e.g. models as \cite{schouten_nmclab_2008, mugge_rigorous_2010}
+
+
+\begin{figure}[b]
+	\centering
+	\includegraphics[width=.8\linewidth]{Figures/elastography/mugge_antagonistic.pdf}
+	\caption{Antagonistic muscle model used in the simulation study of \citeauthor{mugge_modeling_2012}. The spinal control consists of MS and GTO feedback, and takes an additional supraspinal command as input. The force in the MTU is multiplied by a moment arm to obtain the joint torque. Figure adapted from \citet{mugge_modeling_2012}.}
+	\label{fig:mugge_antagonistic}
+\end{figure}
+
+
+\subsection{Change in model structure}
+Without a change in experiment design, the model structure has to be made compatible with the additional ultrasound measurement data. One possibility is the introduction of an antagonistic muscle model, like used in \cite{de_gooijer-van_de_groep_estimation_2016}. However, this study did not perform a complete system identification and did not attempt to identify the source of reflexive feedback as mentioned before. Neuromuscular models that include modelling of afferent proprioceptive feedback and antagonistic muscles cannot be found in the \tred[context] of system identification, but are used in simulation studies, e.g. \cite{munts_fixed_2011, mugge_modeling_2012}. 
+
+The model of \citeauthor{mugge_modeling_2012} (see \autoref{fig:mugge_antagonistic}) is nonlinear and consists of about 50 parameters \cite{mugge_modeling_2012}. It includes the nonlinear properties of the proprioceptors and MTUs (adopted from \cite{winters_analysis_1985, stroeve_neuromuscular_1998}). By contrast, the (linear) model of \citeauthor{schouten_nmclab_2008} consists of 18 parameters \cite{schouten_nmclab_2008}. The difference in linear versus nonlinear modelling makes the comparison unfair, since the linear model is in fact a linearisation of a nonlinear model. However, when considering a linear antagonistic neuromuscular model, this would require (at least) double the number of parameters to describe the MTUs and proprioceptors. In addition, moment arms are required to estimate the net joint torque, introducing at least two additional parameters that are not present in a lumped model. 
+
+In the ideal case, not all of these additional parameters have to be estimated in the parameter fitting procedure. For example, the (average) moment arms could be determined by imaging techniques (MRI, ultrasound \cite{fath_direct_2010}) or estimated based on anthropometric data \cite{ramsay_muscle_2009}. When the relation between shear wave propagation and stiffness or even muscle force is more clearly established, elastography measurements could be used to estimate the tissue (visco)elastic parameters, further relieving the parameter estimation procedure. 
+
+Under the assumption that only one ultrafast ultrasound system is available (costly equipment), only one group of muscles (with the same function) can be imaged during a identification experiment, either the flexors or extensors. Consequently, the sources of afferent feedback can only be estimated for one muscle group. Hence, the antagonistic MTU group remains kind of a black box, in which the MTU interaction cannot be separated. 
+
+The first study that uses ultrafast ultrasound in system identification might have to change the experimental conditions together with the neuromuscular model. 
+
+
+%In many studies, the muscle tendon unit interaction is omitted, or other methods to estimate the muscle and tendon elongation are used. EXAMPLES, studies that estimate using ankle angle… Not the way to go. The total elongation of the MTU can still be used, and the additional information of US can be used to quantify the individual contribution of lengthening, since one elongation of the (series) system is known. 
+
+%To use this length information, the agonist and antagonist muscles should be modelled separately. But separating these muscle groups faces some difficulties, since the length information of only the agonist MTU is available from the measurement. The antagonistic MTU elongation can still only be estimated as a whole, not individual contributions. 
+%Lengthening information of specific muscle can better explain some of the reflexes, but only at for one muscle / muscle group per function. Therefore, the most useful modelling structure will be analysed. 
+
+%A study by \citep{mugge_modeling_2012, munts_fixed_2011} did use an antagonistic muscle model \tred[(INCLUDE MODEL SCHEME)], in which proprioception was included. This was however a (forward) simulation study, and no identification based on measured subject data. These two domains have to be linked, and perhaps UUS can be the bridge. \tred[haha].  
+
+%Mugge et al. used an agonist-antagonistic muscle model to simulate movement patterns (relating to CRPS). This model structure was derived from (Winters \& Stark 1989) and (Stroeve 1998), and consists of an antagonistic muscle pair, both modelled by a Hill model. Describe equations. 
+
+%Using US, there is however the problem that (depending on the equipment available) only one group of muscles (flexor or extensor) can be imaged. So when using two Hill models, the contributions of the other MTU are unknown. This can lead to wrong estimation of MTU elongation, and can lead to problems in identifying the reflexive contributions to movement (further discussed in section afferent feedback)
+%Similarly, the intrinsic contributions also become more complicated, since e.g. the intertial contribution has to be split in minimal three components (MTU1, MTU2, limb etc) (further discussed in section intrinsic feedback).
+
+
+
+
+
+%\subsubsection{Muscle-tedon unit modelling}
+%Tendon properties can be assessed with SSI or SWS. 
+%relating measurements to muscle force and subsequently joint torque. 
+%Several studies not modelled anything, others based on Hill type muscle model. An alternative is the Huxley model, based on crossbridge attachment. 
+%
+%Hill, Huxley, no model?
+%
+%Discuss Hill, CE PE SE element. Parameters in model. 
+%If antagonistic model is used, one side can be modelled as MTU, in which individual contributions M and T are known. 
+%Other side however faces problem, since these separate contributions remain unknown. Here the estimation method employed by Mugge and Schouten perhaps is better. 
+%
+%
+%Alternative, no model 
+%Estimate the viscoelastic parameters of tendon (SSI elastography, Supersonic shear wave imaging).
+%Measure elongation of tendon. 
+%x and xdot of tendon times stiffness viscosity results in force. 
+%Tendon properties known to be nonlinear, Finni 2006: “While the tendon force–length curve is non-linear, the Young’s modulus is typically derived from a linear portion of the stress–strain curve (Butler et al., 1978), with an approximate value of 1.2 or 1.5GPa (Zajac, 1989, Alexander, 2002).” 
+%Test in multiple ankle positions. ???
