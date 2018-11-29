@@ -2,7 +2,7 @@
 % \chapter{Removing assumptions using ultrafast ultrasound}
 
 % ===========================================================================
-\chapter{Removing assumptions in joint dynamics system identification using ultrafast ultrasound}
+\chapter{Relaxing assumptions in joint dynamics system identification using ultrafast ultrasound}
 \label{chap:remove_assumptions}
 % Chapter intro: discussion on how (some of) the assumptions can be removed by using ultrafast ultrasound. 
 % Focus on IDing ankle joint dynamics, since earlier study showed that (Ossenkoppele) 
@@ -15,48 +15,49 @@ The focus of this chapter will be on identification of ankle joint dynamics, sin
 
 
 % ===========================================================================
-\section{Implication of assumptions}
+% MOVED TO CHAPTER 3
+%\section{Implication of assumptions}
 % NOTE: all assumptions are closelty interconnected, hence a clear separation is hard to do. Two main assumptions to which the others are closely related will be discussed, and the implications thereof. 
-There is a wide variety in modelling of the neuromuscular system across the studies, based on various assumptions. The wide variety in modelling approaches shows that not all studies have the same goal. Where \cite{kearney_identification_1997, mirbagheri_intrinsic_2000, de_gooijer-van_de_groep_estimation_2016, jalaleddini_subspace_2017} used a model with as little as possible \textit{a priori} knowledge, other studies attempted to build (simplified) models based on the current believes about the human physiology involved with reflexes and movement \cite{zhang_simultaneous_1997, van_der_helm_identification_2002, schouten_nmclab_2008, mugge_rigorous_2010}. The former can be seen as more phenomenological studies, which can be used to determine characteristic differences between populations, but are not as informative as the latter, where the goal is to improve the understanding of the underlying physiology and relate changes in the physiologic state to the observed behaviour. Hence, the various identified assumptions all lead to some implications for system identification of the joint dynamics, and have a great influence on what exactly can be learned from the experiment and model. Since the assumptions and their implications are for the most part closely related, these cannot be clearly separated. Therefore, the implications will be discussed based on two main assumptions, relating to muscle-tendon interaction and lumping of muscles. 
-
-
-\subsection{Muscle-tendon interaction}
-A number of system identification studies did not consider muscle-tendon interaction, and consequently related joint ankle or position directly to muscle elongation \cite{zhang_simultaneous_1997, kearney_identification_1997, mirbagheri_intrinsic_2000, van_der_helm_identification_2002, de_gooijer-van_de_groep_estimation_2016}. When it is assumed that no MTU interaction occurs, this directly implies an infinitely stiff tendon. Especially for compliant tendons, such as the Achilles tendon connected to the plantar flexors in the lower leg, significant MTU interaction can be expected, which can lead to a distorted estimation of the muscle elongation. This has consequences for the separation of intrinsic and reflexive contributions to the movement. 
-
-Not considering MTU interaction can lead to a distorted estimation of muscle elongation and subsequently distortion in the estimated contribution of intrinsic properties to movement. In general, a simple spring-damper system consisting of two parameters is used to describe the intrinsic properties of all muscles, passive tissue, tendons and joint resistance. Since these components do not all displace the same amount due to MTU interaction and different moment arms, the estimation of intrinsic properties is distorted (further discussed in \autoref{sec:rem_lumping-muscle}). 
-
-Likewise, the distorted estimation of muscle elongation has implications on the degree of proprioceptive afferent activity leading to modulation of reflexes. The muscle spindles are sensitive to muscle elongation and lengthening velocity, which in case of an infinitely stiff tendon would be overestimated, since all the elongation is ascribed to the muscle. Some studies considered either position or velocity feedback, which has proven to result in models with reasonable \textit{variance accounted for} (VAF), but presumably leads to further overestimation of a single component to reflex modulation \cite{maas_is_2009}. Furthermore, all of the studies that did not model muscle-tendon interaction also omitted the Golgi tendon organ (i.e. force) afferent feedback. Omission of force feedback can further lead to overestimation of the modelled reflexive mechanism. The choice of proprioceptive receptor modelling does not seem to have a large influence on the prediction capabilities of the model (in terms of VAF), but do not necessarily resemble the physiology behind reflex modulation. 
-% point about tendon in series, stiffness lot higher than muscle in passive state, hence due to 1/keq = 1/k1 + 1/k2 minor contribution. However, for fast movements, this is not the case.
-
-Especially the omission of GTO force feedback contradicts findings reported by the group of Sinkjaer. Af Klint et al. found strong support for contribution of GTO feedback in addition to MS feedback in adaptations to ground irregularities during locomotion \cite{klint_afferent_2009}. However, the effect of GTO and MS feedback during locomotion appeared to be stance phase dependent, where respectively mid-stance MS feedback and late-stance GTO feedback was thought to be dominant \cite{grey_positive_2007, af_klint_sudden_2009}. This emphasises the need for additional measurement data, enabling further isolation of afferent activity during other motor tasks (i.e. balance, force, position tasks). 
-
-	% \tred[expected GTO feedback? Sinkjaer, af Klint??] \textcolor{red}{\lipsum[1]}
-	% - when not considered, GTO omitted. no physiological basis refl modulation
-	%     - expected role is substantial (sinkjaer, klint... ??)
-	% - Wrong estimation leads to wrong activation signal when considering afferent feedback
-
-
-\subsection{Lumping muscle structure}
-\label{sec:rem_lumping-muscle}
-A very common simplification of the neuromuscular model is lumping of antagonistic muscle groups \cite{zhang_simultaneous_1997, van_der_helm_identification_2002, schouten_nmclab_2008, mugge_rigorous_2010}. This has as advantage that the model can be defined by less parameters compared to an antagonistic model (e.g. \cite{de_gooijer-van_de_groep_estimation_2016}). No moment arms for MTUs have to be estimated or averaged over multiple MTUs for the same function (i.e. flexion versus extension). Furthermore, the intrinsic properties (i.e. inertia, stiffness and damping) of limb, joint resistance, tendon, passive and active muscle tissue can all be lumped into a minimum of three parameters. The lumping of muscle groups with different function does however also have disadvantages when the intrinsic and reflexive effects on movements are under analysis. 
-
-% - afferent inhibity/excit contribution. Goal is to separate how the reflexive contribition is build up. with this lumping, Ia, Ib and II afferents of muscle groups contribution to modulation cannot be determined. physiology behind this remains elusive. 
-Firstly, due to lumping the afferent GTO and MS feedback from muscle groups with different functions cannot be well separated. \tred[However, the different muscle groups are always making opposite movements, so the afferent signals are expected to be opposite.] To get a better understanding of reflex modulation, a separation of the afferent signals form the different groups is required, which means that the flexors and extensors have to be lumped separately. In simulation studies (e.g. \cite{mugge_modeling_2012}) this separation is relatively straightforward, but the large number of additional parameters make this approach impractical for identification studies. Although the study of \citeauthor{de_gooijer-van_de_groep_estimation_2016} did use an antagonistic model \cite{de_gooijer-van_de_groep_estimation_2016}, fitting the model might only be possible under specific experimental conditions. This hampers the use of such an antagonistic model in system identification experiments were wide bandwidth perturbation signals are used (further discussed in \autoref{sec:rem_incompatibility}).
-
-% - nonlinear properties proprioceptors only under specific conditions. 
-Secondly, the nonlinear properties of the proprioceptors cannot accurately be modelled and identified with a fully lumped muscle model. The muscle spindles are only sensitive to muscle lengthening and Golgi tendon organs are mostly sensitive to active muscle force. For GTO force feedback a simple gain with a time delay is typically used \cite{schouten_nmclab_2008, mugge_rigorous_2010}. Apart from the nonlinearity of the GTO itself, the flexor and extensor muscles often have asymmetric force characteristics (e.g. plantar flexors stronger than dorsiflexors \cite{fukunaga_specific_1996}). Consequently, modelling the GTOs in plantar flexor and dorsiflexor muscles with a single linear gain could result in an overestimation of plantar flexor MTU force contribution to the afferent signal. The lumping in combination with no MTU interaction has as a consequence that the source of the afferent activity per muscle group \tred[can never be found]. 
-
-% - intrinsic estimated properties do not resemble underlying physoilogy, but contaminated. This does not imply that this is incorrect, but applying new tech UUS that provides specific quantitative data about specific (sub)module creates mismatch. 
-Lastly, the lumping of intrinsic parameters makes the system identification and parameter estimation easier, but does not result in parameters that have a direct physiological meaning. Furthermore, the parameters that are defined, possibly do not only contain contributions of the modelled structure, but are contaminated by contributions of other tissue, e.g. joint resistance. This is not wrong on its own, but has consequences for the usefulness of additional measurement data that has a direct physiological basis (e.g. viscoelastic properties of tendon and muscle). This incompatibility of data and current models will be further discussed in \autoref{sec:rem_incompatibility}. 
-
-% - separation of muscle groups is not that straightforward. apart from more parameters in current model doubled, muscle model, more parameters due to introduction of moment arms, more tendon, joint friction for example not as easily lumped. A view on what these implications mean for the neuromuscular model is presented in last section. 
-
-
-
-% \subsection{Overview implications and what ultrasound can mean}
-% Relate assumptions to goals? 
-% table goals, and which technology can fulfil them. 
-
+%There is a wide variety in modelling of the neuromuscular system across the studies, based on various assumptions. The wide variety in modelling approaches shows that not all studies have the same goal. Where \cite{kearney_identification_1997, mirbagheri_intrinsic_2000, de_gooijer-van_de_groep_estimation_2016, jalaleddini_subspace_2017} used a model with as little as possible \textit{a priori} knowledge, other studies attempted to build (simplified) models based on the current believes about the human physiology involved with reflexes and movement \cite{zhang_simultaneous_1997, van_der_helm_identification_2002, schouten_nmclab_2008, mugge_rigorous_2010}. The former can be seen as more phenomenological studies, which can be used to determine characteristic differences between populations, but are not as informative as the latter, where the goal is to improve the understanding of the underlying physiology and relate changes in the physiologic state to the observed behaviour. Hence, the various identified assumptions all lead to some implications for system identification of the joint dynamics, and have a great influence on what exactly can be learned from the experiment and model. Since the assumptions and their implications are for the most part closely related, these cannot be clearly separated. Therefore, the implications will be discussed based on two main assumptions, relating to muscle-tendon interaction and lumping of muscles. 
+%
+%
+%\subsection{Muscle-tendon interaction}
+%A number of system identification studies did not consider muscle-tendon interaction, and consequently related joint ankle or position directly to muscle elongation \cite{zhang_simultaneous_1997, kearney_identification_1997, mirbagheri_intrinsic_2000, van_der_helm_identification_2002, de_gooijer-van_de_groep_estimation_2016}. When it is assumed that no MTU interaction occurs, this directly implies an infinitely stiff tendon. Especially for compliant tendons, such as the Achilles tendon connected to the plantar flexors in the lower leg, significant MTU interaction can be expected, which can lead to a distorted estimation of the muscle elongation. This has consequences for the separation of intrinsic and reflexive contributions to the movement. 
+%
+%Not considering MTU interaction can lead to a distorted estimation of muscle elongation and subsequently distortion in the estimated contribution of intrinsic properties to movement. In general, a simple spring-damper system consisting of two parameters is used to describe the intrinsic properties of all muscles, passive tissue, tendons and joint resistance. Since these components do not all displace the same amount due to MTU interaction and different moment arms, the estimation of intrinsic properties is distorted (further discussed in \autoref{sec:rem_lumping-muscle}). 
+%
+%Likewise, the distorted estimation of muscle elongation has implications on the degree of proprioceptive afferent activity leading to modulation of reflexes. The muscle spindles are sensitive to muscle elongation and lengthening velocity, which in case of an infinitely stiff tendon would be overestimated, since all the elongation is ascribed to the muscle. Some studies considered either position or velocity feedback, which has proven to result in models with reasonable \textit{variance accounted for} (VAF), but presumably leads to further overestimation of a single component to reflex modulation \cite{maas_is_2009}. Furthermore, all of the studies that did not model muscle-tendon interaction also omitted the Golgi tendon organ (i.e. force) afferent feedback. Omission of force feedback can further lead to overestimation of the modelled reflexive mechanism. The choice of proprioceptive receptor modelling does not seem to have a large influence on the prediction capabilities of the model (in terms of VAF), but do not necessarily resemble the physiology behind reflex modulation. 
+%% point about tendon in series, stiffness lot higher than muscle in passive state, hence due to 1/keq = 1/k1 + 1/k2 minor contribution. However, for fast movements, this is not the case.
+%
+%Especially the omission of GTO force feedback contradicts findings reported by the group of Sinkjaer. Af Klint et al. found strong support for contribution of GTO feedback in addition to MS feedback in adaptations to ground irregularities during locomotion \cite{klint_afferent_2009}. However, the effect of GTO and MS feedback during locomotion appeared to be stance phase dependent, where respectively mid-stance MS feedback and late-stance GTO feedback was thought to be dominant \cite{grey_positive_2007, af_klint_sudden_2009}. This emphasises the need for additional measurement data, enabling further isolation of afferent activity during other motor tasks (i.e. balance, force, position tasks). 
+%
+%	% \tred[expected GTO feedback? Sinkjaer, af Klint??] \textcolor{red}{\lipsum[1]}
+%	% - when not considered, GTO omitted. no physiological basis refl modulation
+%	%     - expected role is substantial (sinkjaer, klint... ??)
+%	% - Wrong estimation leads to wrong activation signal when considering afferent feedback
+%
+%
+%\subsection{Lumping muscle structure}
+%\label{sec:rem_lumping-muscle}
+%A very common simplification of the neuromuscular model is lumping of antagonistic muscle groups \cite{zhang_simultaneous_1997, van_der_helm_identification_2002, schouten_nmclab_2008, mugge_rigorous_2010}. This has as advantage that the model can be defined by less parameters compared to an antagonistic model (e.g. \cite{de_gooijer-van_de_groep_estimation_2016}). No moment arms for MTUs have to be estimated or averaged over multiple MTUs for the same function (i.e. flexion versus extension). Furthermore, the intrinsic properties (i.e. inertia, stiffness and damping) of limb, joint resistance, tendon, passive and active muscle tissue can all be lumped into a minimum of three parameters. The lumping of muscle groups with different function does however also have disadvantages when the intrinsic and reflexive effects on movements are under analysis. 
+%
+%% - afferent inhibity/excit contribution. Goal is to separate how the reflexive contribition is build up. with this lumping, Ia, Ib and II afferents of muscle groups contribution to modulation cannot be determined. physiology behind this remains elusive. 
+%Firstly, due to lumping the afferent GTO and MS feedback from muscle groups with different functions cannot be well separated. \tred[However, the different muscle groups are always making opposite movements, so the afferent signals are expected to be opposite.] To get a better understanding of reflex modulation, a separation of the afferent signals form the different groups is required, which means that the flexors and extensors have to be lumped separately. In simulation studies (e.g. \cite{mugge_modeling_2012}) this separation is relatively straightforward, but the large number of additional parameters make this approach impractical for identification studies. Although the study of \citeauthor{de_gooijer-van_de_groep_estimation_2016} did use an antagonistic model \cite{de_gooijer-van_de_groep_estimation_2016}, fitting the model might only be possible under specific experimental conditions. This hampers the use of such an antagonistic model in system identification experiments were wide bandwidth perturbation signals are used (further discussed in \autoref{sec:rem_incompatibility}).
+%
+%% - nonlinear properties proprioceptors only under specific conditions. 
+%Secondly, the nonlinear properties of the proprioceptors cannot accurately be modelled and identified with a fully lumped muscle model. The muscle spindles are only sensitive to muscle lengthening and Golgi tendon organs are mostly sensitive to active muscle force. For GTO force feedback a simple gain with a time delay is typically used \cite{schouten_nmclab_2008, mugge_rigorous_2010}. Apart from the nonlinearity of the GTO itself, the flexor and extensor muscles often have asymmetric force characteristics (e.g. plantar flexors stronger than dorsiflexors \cite{fukunaga_specific_1996}). Consequently, modelling the GTOs in plantar flexor and dorsiflexor muscles with a single linear gain could result in an overestimation of plantar flexor MTU force contribution to the afferent signal. The lumping in combination with no MTU interaction has as a consequence that the source of the afferent activity per muscle group \tred[can never be found]. 
+%
+%% - intrinsic estimated properties do not resemble underlying physoilogy, but contaminated. This does not imply that this is incorrect, but applying new tech UUS that provides specific quantitative data about specific (sub)module creates mismatch. 
+%Lastly, the lumping of intrinsic parameters makes the system identification and parameter estimation easier, but does not result in parameters that have a direct physiological meaning. Furthermore, the parameters that are defined, possibly do not only contain contributions of the modelled structure, but are contaminated by contributions of other tissue, e.g. joint resistance. This is not wrong on its own, but has consequences for the usefulness of additional measurement data that has a direct physiological basis (e.g. viscoelastic properties of tendon and muscle). This incompatibility of data and current models will be further discussed in \autoref{sec:rem_incompatibility}. 
+%
+%% - separation of muscle groups is not that straightforward. apart from more parameters in current model doubled, muscle model, more parameters due to introduction of moment arms, more tendon, joint friction for example not as easily lumped. A view on what these implications mean for the neuromuscular model is presented in last section. 
+%
+%
+%
+%% \subsection{Overview implications and what ultrasound can mean}
+%% Relate assumptions to goals? 
+%% table goals, and which technology can fulfil them. 
+%
 
 
 
@@ -150,11 +151,6 @@ This method was used by \citeauthor{helfenstein-didier_vivo_2016} to assess the 
 
 
 
-%\subsubsection{Validation tendon properties}
-%Although the tendon is known to behave viscous \cite{seynnes_ultrasound-based_2014}, many studies perform `conventional' SSI measurements on tendons (i.e. merely looking at shear wave group velocity, no phase velocity dispersion analysis). 
-%\cite{haen_shear_2017}
-
-
 
 
 
@@ -180,19 +176,6 @@ This method was used by \citeauthor{helfenstein-didier_vivo_2016} to assess the 
 
 
 
-
-%\subsection{Sources of variation in elastography assessed properties}
-%\tred[variation / error ?]
-%
-%\citet{kot_elastic_2012}
-%
-%\citet{koo_factors_2015}
-%
-%\citet{ewertsen_evaluation_2016}
-
-
-
-
 \subsection{Elastography in system identification}
 The measurement of the (visco)elastic properties of muscle and/or tendon using elastography might be useful to estimate the force in the MTU, which can then be used to estimate the force in the muscle by using the material model to relate measured displacements to stress. Ultrafast ultrasound has enabled the development of two elastography methods, SSI and SWS. For the former, numerous studies have been conducted to measure the shear wave group velocity in a wide variety of tissues, including muscle and tendon. The latter is used only in a limited number of studies. This section first discusses the reliability of the various studies, followed by a proposed view on how these techniques can be used in system identification experiments. 
 
@@ -209,19 +192,57 @@ Though the mechanical properties presumably cannot be assessed during the identi
 	%- two methods (SSI SWS)
 %- different reports per method
 %- lots of different experimental conditions make results difficult to compare. variety in how results are reported make it difficult to compare. Furthermore differences in subject groups used per study, individual differences subjects make different methdos hard to compare
-Especially regarding SWS, there is quite some difference in the used methods to assess the viscoelastic properties of muscle and tendon. There is a lot variety in the experimental conditions used in each of these studies, making it hard to compare them. Furthermore, not every study obtains the same material parameters. For example, where \cite{brum_vivo_2014, helfenstein-didier_vivo_2016} reports that the viscosity of the tendon parallel to the tendon fibres cannot be estimated from the dispersion curves, \cite{cortes_continuous_2015} reports values for both viscosity and elasticity. \tred[Moreover, it is hard to assess the influence of individual differences in the tested subjects, when mean values with standard deviation over all the participants are reported, hampering further comparison of the studies using SWS.]
+Especially regarding SWS, there is quite some difference in the used methods to assess the viscoelastic properties of muscle and tendon. There is a lot variety in the experimental conditions used in each of these studies, making it hard to compare them. Furthermore, not every study obtains the same material parameters. For example, where \cite{brum_vivo_2014, helfenstein-didier_vivo_2016} reports that the viscosity of the tendon parallel to the tendon fibres cannot be estimated from the dispersion curves, \cite{cortes_continuous_2015} reports values for both viscosity and elasticity. Moreover, it is hard to assess the influence of individual differences in the tested subjects based on the published literature, when mean values with standard deviation over all the participants are reported. This further hampers the comparison of the studies using SWS.
 
 %- conversion of shear wave velocity to material parameters introduces a lot of assumptions. 
 %- SSI relatively easy (Eby), but different 5G = E intead of 3 like in assumed elastic model. 
 %- SWS conversion to stiffness not reported before.
 %- this makes it perhaps more a qualitative method, based on the rheological model. measured shear wave speed and dispersion are only things that can be seen as qualitative measurements. 
-In both SSI and SWS, the tissue is assumed to behave according to a certain rheological model. In case of SSI, this is a linear elastic isotropic model. Using this material description, it is possible to estimate the shear elastic modulus from the shear wave group velocity via $\mu=\rho c_g^2$. Following this model, the Young's modulus is equal to $E = 3\, \mu$ (see \autoref{sec:us_ssi}). However, simultaneous material testing and SSI of brachialis swine muscles resulted in a linear fit where $E \approx 5\mu$ \cite{eby_validation_2013}. This shows that SSI can perform well in comparing the shear wave velocity from subject to subject, but results in a more qualitative measurement, than an quantitative assessment of material properties. For SWS, a similar study like \cite{eby_validation_2013} to compare the viscoelastic muscle properties to mechanical tests is not reported. \tred[Furthermore, the estimation of muscle force from the shear moduli described by the Voigt model and measured muscle or tendon elongation has not been shown in literature before. ]
+In both SSI and SWS, the tissue is assumed to behave according to a certain rheological model, but validation of these models \tred[requires additional research]. In case of SSI, a linear elastic isotropic model is used. With this material description, it is possible to estimate the shear elastic modulus from the shear wave group velocity via $\mu=\rho c_g^2$. Following this model, the Young's modulus is equal to $E = 3\, \mu$ (see \autoref{sec:us_ssi}). However, simultaneous material testing and SSI of brachialis swine muscles resulted in a linear fit where $E \approx 5\mu$ \cite{eby_validation_2013}. This shows that SSI can perform well in comparing the shear wave velocity from subject to subject, but results in a more qualitative measurement, than an quantitative assessment of material properties. For SWS, a similar study like \cite{eby_validation_2013} to compare the viscoelastic muscle properties to mechanical tests is not reported. Furthermore, the estimation of muscle force from the shear moduli described by the Voigt model and measured muscle or tendon elongation has not been shown in literature before.
 % the conversion of the Voigt model parameters shear elasticity and shear viscosity to mechanical parameters to estimate muscle forces has not been reported.
 
 
 %		- assessment of muscle properties hard, studies have done it for passive properties of the muscle. Active properties are dependent on activation level, fibre length and velocity, making the estimation of the properties only possible for the force length curve, not force velocity. This limits its usability in sys id experiments.
 %		- Alternatively, elastography can be done on tendon, since this is passive material, and thus is not dependent on activation level. However, the tendon is known to behave rate dependent, and has nonlinear force-elongation properties \cite{seynnes_ultrasound-based_2014}. For tendon the same limitation applies as for muscle, that the rate dependence cannot be easily determined. Furthermore, due to the limited thickness of tendons, shear waves reflect at boundaries for low frequencies, distorting the estimation of the viscoelastic properties. 
 The reported shear wave velocities for the passive muscle over a range of joint angles show a good correspondence to the expected increase in stiffness \cite{gennisson_viscoelastic_2010}, based on the passive muscle tissue properties \cite{zajac_muscle_1989}. The active properties show a lot more variation (conflicting reports on dispersion), and are more difficult to identify, since they have to be measured for different joint angles and activation levels. Since elastography cannot be performed during eccentric or concentric contraction, the force-velocity characteristic cannot be obtained using elastography. This means that for a muscle, elastography could in theory only be used to separate the active and passive tissue contributions to stiffness in isometric and passive conditions. In dynamic conditions, as presented during system identification experiments, substantial MTU interaction is expected, which further limits the usability of the passive material parameters, because of the many possible combinations of joint angle, activation level and ratio between tendon and muscle length. Although the tendon has only passive properties (i.e. does not depent on activation signal), aforementioned reasons also limit the use of assessed tendon properties, of which the often neglected rate dependency cannot be assessed \cite{seynnes_ultrasound-based_2014}. 
+
+
+
+It has been shown that the estimation of shear moduli using SSI varies with transducer pressure and ROI size in both muscle and tendon \cite{kot_elastic_2012}. Furthermore, the shear wave group velocity was found dependent on scanning depth and whether there was bone below the ROI \cite{ewertsen_evaluation_2016}. This calls on one hand for standardisation in performing elastography experiments, by e.g. using casts or mounts for the probe in which the pressure can be properly set and maintained, eliminating interobserver reproducibility issues (reported by e.g. \cite{aubry_biomechanical_2013}). On the other hand this shows the need for further research, e.g. to find the underlying physical principles for the variation dependent on surrounding tissue and depth. 
+
+It can be concluded that before elastography measurements can be of value in system identification, extensive research is needed to find the relation between the estimated shear wave velocity profiles and mechanical properties of muscle and tendon. Under dynamics conditions, elastography may never be of use, despite technological progress. \tred
+
+
+
+
+%\subsection{Sources of variation in elastography assessed properties}
+%\citet{kot_elastic_2012}
+%
+%\citet{koo_factors_2015}
+%
+%\citet{ewertsen_evaluation_2016}
+%- using elastography there is variation due to handling of probe, and different technical settings \cite{kot_elastic_2012}
+%first e.g. probe mounts have to be developed, and the influence on the quantitative nature of the various  elastograpghy methods has to be further studied, before it is applicable to sys ID. Exact protocols have to be developed...
+%
+%- abundance of studies uses SSI to assess youngs modulus (e.g. [shinohara 2010, Arda 2011, maisetti 2012], ...see Brandenburg et al. 2014), however the quantitative nature of this measurement cannot be validated in vivo. The in vitro study of \cite{eby_validation_2013} validated this, but did not found the relation $E=3\mu$, but approximately $E=5\mu$. This difference indicates that it might be a more qualitative measurement, but since E is assumed to increase as function of the group velocity squared, the influence on the error in estimation might be limited... 
+%
+%- for elastography compound imaging can be used to increase image quality, but alternative beamforming methods (Garcia 2013, Montaldo 2009) /RF remapping (check Sumanaweera 2005) can also be used to improve image quality, without decreasing effective frame rate %\cite{cortes_continuous_2015}
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -252,7 +273,7 @@ However, at one location, only agonist muscles can be imaged, not both at the sa
 
 
 
-\textbf{assumptions to remove}
+\textbf{assumptions to Relax}
 \begin{itemize}
 	\item Proportion of contribution of afferent and voluntary can be modelled. Model origin of EMG signal.
 	\item one MTU infinitely stiff tendon
@@ -265,7 +286,7 @@ However, at one location, only agonist muscles can be imaged, not both at the sa
 
 
 % ===========================================================================
-\section{Incompatibility ultrasound measurement with current NMC models}
+\section{Implementation ultrasound measurement in current NMC models}
 \label{sec:rem_incompatibility}
 The currently published neuromuscular models almost all share the assumptions of lumping all muscles (see \autoref{sec:rem_lumping-muscle}). This lumped structure greatly helps in reducing the number of parameters in the model, but induces a large gap between the defined parameters and their physiological meaning. With ultrafast ultrasound, it is possible to acquire data that is closer to the physiology (i.e. proportional), and therefore not directly compatible with the current parametric neuromuscular models. To use the acquired data to fit a model, either a substantial change in the model structure has to be made, or the experimental conditions have to be adapted. The specific model changes or exact experiment design is beyond the scope of this literature survey, however, some thoughts will be shared.
 
@@ -274,7 +295,7 @@ The currently published neuromuscular models almost all share the assumptions of
 
 
 \subsection{Change in experiment design}
-With a single ultrafast ultrasound device, only one side of a limb can be imaged, either the flexor or the extensor. Consequently, it is not trivial to identify the complete neuromuscular system. As a simplification, only one group of muscles could be identified, by avoiding activation of the antagonistic muscle group. This would mean that the joint has to be disturbed at a sufficient distance from the neutral position, to ensure that only the agonist can contribute to the rejection of the disturbance. To validate that the antagonist is not active during the experiment, EMG measurements can be used, as demonstrated in e.g. \cite{kearney_identification_1997, mirbagheri_intrinsic_2000}. The antagonistic MTUs do indeed still have a passive contribution to the movement, which still has to be identified. 
+At the present time, ultrafast ultrasound equipment is very costly. For this reason, it will be assumed that there is only one ultrafast ultrasound device available in a lab. With a single ultrafast ultrasound device, only one side of a limb can be imaged, either the flexor or the extensor. Consequently, it is not trivial to identify the complete neuromuscular system. As a simplification, only one group of muscles could be identified, by avoiding activation of the antagonistic muscle group. This would mean that the joint has to be disturbed at a sufficient distance from the neutral position, to ensure that only the agonist can contribute to the rejection of the disturbance. To validate that the antagonist is not active during the experiment, EMG measurements can be used, as demonstrated in e.g. \cite{kearney_identification_1997, mirbagheri_intrinsic_2000}. The antagonistic MTUs do indeed still have a passive contribution to the movement, which still has to be identified. 
 
 Alternatively, experiments similar to those of \citeauthor{de_gooijer-van_de_groep_estimation_2016} can be conducted \cite{de_gooijer-van_de_groep_estimation_2016}. In these experiments, a sudden strain is applied (participant asked to not interfere), and only reflexive activity in combination with passive properties are expected. These kind of transient experiments do not allow for the classical system identification (perturb system over wide band of frequencies), but could provide a lot of insight on the contribution of MS and GTO feedback, and subsequent force generation. The nonlinear model of \cite{de_gooijer-van_de_groep_estimation_2016} could relatively easy be expanded with an afferent feedback model, and could be useful to explain the observed movement based on the with ultrasound measured tendon or muscle elongation. 
 %, apply strain, no voluntary activity, and try to fit reflex activity to activation of single muscle group (flexor or extensor group). Transient experiments under condition, no real sys ID, but could provide more insight in the contribution of GTO and MS
@@ -290,7 +311,7 @@ Alternatively, experiments similar to those of \citeauthor{de_gooijer-van_de_gro
 
 
 \subsection{Change in model structure}
-Without a change in experiment design, the model structure has to be made compatible with the additional ultrasound measurement data. One possibility is the introduction of an antagonistic muscle model, like used in \cite{de_gooijer-van_de_groep_estimation_2016}. However, this study did not perform a complete system identification and did not attempt to identify the source of reflexive feedback as mentioned before. Neuromuscular models that include modelling of afferent proprioceptive feedback and antagonistic muscles cannot be found in the \tred[context] of system identification, but are used in simulation studies, e.g. \cite{munts_fixed_2011, mugge_modeling_2012}. 
+Without a change in experiment design, the model structure has to be made compatible with the additional ultrasound measurement data. One possibility is the introduction of an antagonistic muscle model, like used in \cite{de_gooijer-van_de_groep_estimation_2016}. However, this study did not perform a complete system identification and did not attempt to identify the source of reflexive feedback as mentioned before. Neuromuscular models that include modelling of afferent proprioceptive feedback and antagonistic muscles cannot be found in the context of system identification, but are used in simulation studies, e.g. \cite{munts_fixed_2011, mugge_modeling_2012}. 
 
 The model of \citeauthor{mugge_modeling_2012} (see \autoref{fig:mugge_antagonistic}) is nonlinear and consists of about 50 parameters \cite{mugge_modeling_2012}. It includes the nonlinear properties of the proprioceptors and MTUs (adopted from \cite{winters_analysis_1985, stroeve_neuromuscular_1998}). By contrast, the (linear) model of \citeauthor{schouten_nmclab_2008} consists of 18 parameters \cite{schouten_nmclab_2008}. The difference in linear versus nonlinear modelling makes the comparison unfair, since the linear model is in fact a linearisation of a nonlinear model. However, when considering a linear antagonistic neuromuscular model, this would require (at least) double the number of parameters to describe the MTUs and proprioceptors. In addition, moment arms are required to estimate the net joint torque, introducing at least two additional parameters that are not present in a lumped model. 
 
