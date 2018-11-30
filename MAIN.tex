@@ -35,7 +35,13 @@
     % \excludecomment{figure}
     % \let\endfigure\relax
 
-
+% ITEMIZE
+\newenvironment{myitemize}
+	{ \begin{itemize}
+		\setlength{\itemsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}     }
+	{ \end{itemize}  }  
 
  
 % CITATION STYLE FOR READABILITY

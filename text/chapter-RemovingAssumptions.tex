@@ -213,8 +213,6 @@ It has been shown that the estimation of shear moduli using SSI varies with tran
 It can be concluded that before elastography measurements can be of value in system identification, extensive research is needed to find the relation between the estimated shear wave velocity profiles and mechanical properties of muscle and tendon. Under dynamics conditions, elastography may never be of use, despite technological progress. \tred
 
 
-
-
 %\subsection{Sources of variation in elastography assessed properties}
 %\citet{kot_elastic_2012}
 %
@@ -249,29 +247,48 @@ It can be concluded that before elastography measurements can be of value in sys
 
 % ===========================================================================
 \section{Separating proprioceptive contribution -- imaging}
-Besides elastography, normal ultrafast imaging can be used to track the elongation of the muscle fibres. 
+Besides elastography, normal ultrafast imaging can be used to track the elongation of muscle fibres and/or tendon. This is expected to be especially useful in understanding contribution of the different proprioceptive afferents to observed movement. 
 
-This has already been demonstrated in various studies, and there are various tracking algorithms developed. 
+% LOCATIONS TO IMAGE
+Imaging can be done at three locations; Over the muscle belly to obtain fibre length of one or more muscles with similar function (e.g. \cite{klint_afferent_2009, cronin_triceps_2015}) 
 
-\citeauthor{deffieux_ultrafast_2006} were the first to use ultrafast ultrasound to image the contraction of muscle fibres in vivo upon electrical stimulation (\SI{30}{\volt} for \SI{400}{\micro\second}) \cite{deffieux_ultrafast_2006}. The \textit{biceps brachii} was imaged at \SI{1500}{\hertz}, and using the cross correlation between two successive images the local particle velocity could be assessed. With this method a maximum particle velocity of about \SI{0.7}{\centi\meter\per\second} was found. The fibre length per frame was not assessed, and due to the fusiform shape and limited size of the ultrasound probe, it is not possible to determine the absolute length of the fibres \cite{hodges_measurement_2003}. Only relative length changes can be assessed for the \textit{biceps brachii}. 
+Muscle tendon junction, fibre and tendon length (e.g. \cite{klint_afferent_2009})
+
+Tendon to obtain tendon elongation 
+
+% IMPLICATION IMAGING LOCATION... 
+The imaging location 
+
+% ===========================================================================
+\subsection{Ultrafast imaging of muscle and tendon}
+
+\citeauthor{deffieux_ultrafast_2006} were the first to use ultrafast ultrasound to image the contraction of muscle fibres in vivo upon electrical stimulation (\SI{30}{\volt} for \SI{400}{\micro\second}) \cite{deffieux_ultrafast_2006}. The \textit{biceps brachii} was imaged at \SI{1500}{\hertz}, and using the cross correlation between two successive images the local particle velocity could be assessed. With this method a maximum particle velocity of about \SI{0.7}{\centi\meter\per\second} was found. The fibre length per frame was not assessed, and due to the fusiform shape and limited size of the ultrasound probe, it is not possible to determine the absolute length of the fibres \cite{hodges_measurement_2003}. Consequently, only relative length changes can be assessed for the \textit{biceps brachii}. This group performed a study similar to \cite{deffieux_ultrafast_2006}, and named the used tracking technique `echo mechanomyography', however, after this it has not been used again. In comparison with tracking of muscle fibres in beamformed images (e.g. \cite{farris_ultratrack_2016}), the global velocity profiles can be regarded less meaningful. 
 
 
 
 
-expectation? Klint? Sinkjaer? GTO expected more than MS? Timing? Loram? 
 
-No studies using ultrafast ultrasound for imaging of tendon or muscle displacement. Studies using conventional B-mode ultrasound in abundance.
+% ===========================================================================
+\subsection{Conventional imaging in reflex identification}
 
-Imaging can be done at three locations
-\begin{itemize}
-    \item Muscle belly to obtain fibre length (e.g. \cite{klint_afferent_2009})
-    \item Muscle tendon junction, fibre and tendon length (e.g. \cite{klint_afferent_2009})
-    \item Tendon to obtain tendon elongation 
-\end{itemize}
+\citeauthor{cronin_triceps_2015} found a poor correlation between fascicle stretch of the \textit{triceps surae} and the short latency reflex (SRL) \cite{cronin_triceps_2015}. Same for fascicle velocity, Ia and II afferents thus were found to not really contribute to stretch reflex. Magnitude of applied stretch was not correlated to magnitude observed stretch reflex. 
+
+
+
+Instead, hypothesis established by [Lance and Degail, cite] that stretch reflex 
+
+%expectation? Klint? Sinkjaer? GTO expected more than MS? Timing? Loram? 
+
+%No studies using ultrafast ultrasound for imaging of tendon or muscle displacement. Studies using conventional B-mode ultrasound in abundance.
+
+
 Due to availability ultrasound equipment, and interference us waves (?) ultrasound performed at one place. By purely imaging, US can result in tendon length, fibre length, or both. These measurements can be used to estimate the lengthening velocities. 
 However, at one location, only agonist muscles can be imaged, not both at the same time with limited equipment.  
 
 
+
+% ===========================================================================
+\subsection{Ultrafast imaging in system identification}
 
 \textbf{assumptions to Relax}
 \begin{itemize}
@@ -279,6 +296,20 @@ However, at one location, only agonist muscles can be imaged, not both at the sa
 	\item one MTU infinitely stiff tendon
 	\item sources of afferent feedback \tred
 \end{itemize}
+
+
+
+
+
+Stated by Cronin: "Moreover, increasing preactivation torque was often associated with a larger SLR but smaller and/or slower fascicle stretch (Fig. 3)." Preactivation: muscle stiffer, hence elongation more by tendon, raise in tendon force, raise in Ib afferent
+
+Muscle force problems, PERHAPS TENDON THINNING?
+
+
+
+
+
+
 
 
 
