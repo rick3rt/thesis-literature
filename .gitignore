@@ -1,0 +1,10 @@
+# ignore MAIN except MAIN.pdf
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.soc
+*.synctex.gz
+*.toc
+MAIN.synctex(busy)
