@@ -1,4 +1,4 @@
-# ignore MAIN except MAIN.pdf
+# ignore latex compilation files and PDF
 *.aux
 *.bbl
 *.blg
@@ -8,3 +8,4 @@
 *.synctex.gz
 *.toc
 MAIN.synctex(busy)
+MAIN.pdf
