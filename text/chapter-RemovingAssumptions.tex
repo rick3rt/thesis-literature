@@ -262,39 +262,51 @@ The imaging location
 % ===========================================================================
 \subsection{Ultrafast imaging of muscle and tendon}
 
+Several studies demonstrated the use of ultrafast ultrasound imaging of muscle and tendon during movement, though the identification of reflexes mediated by afferent feedback using ultrafast ultrasound has not been demonstrated before. 
+
 \citeauthor{deffieux_ultrafast_2006} were the first to use ultrafast ultrasound to image the contraction of muscle fibres in vivo upon electrical stimulation (\SI{30}{\volt} for \SI{400}{\micro\second}) \cite{deffieux_ultrafast_2006}. The \textit{biceps brachii} was imaged at \SI{1500}{\hertz}, and using the cross correlation between two successive images the local particle velocity could be assessed. With this method a maximum particle velocity of about \SI{0.7}{\centi\meter\per\second} was found. The fibre length per frame was not assessed, and due to the fusiform shape and limited size of the ultrasound probe, it is not possible to determine the absolute length of the fibres \cite{hodges_measurement_2003}. Consequently, only relative length changes can be assessed for the \textit{biceps brachii}. This group performed a study similar to \cite{deffieux_ultrafast_2006}, and named the used tracking technique `echo mechanomyography', however, after this it has not been used again. In comparison with tracking of muscle fibres in beamformed images (e.g. \cite{farris_ultratrack_2016}), the global velocity profiles can be regarded less meaningful. 
 
 
-\citeauthor{hauraix_shortening_2013} used ultrafast ultrasound to determine the contributions of the different components of the muscle-tendon unit during isokinetic plantar flexions \cite{hauraix_shortening_2013}. Imaging was performed at four locations, over the muscle belly of the medial gastrocnemius and the lateral gastrocnemius, and the myotendinous junction of both these muscles. Six different isokinetic angular velocities (30, 90, 150, 210, 270, and \SI{330}{\deg\per\second}) were used to determine the contributions of MTU components, while ankle angle, velocity and torque were measured. Simultaneous ultrasound imaging was performed at a maximum of \SI{1000}{\hertz}. One location per serie was imaged, hence the conditions were repeated four times to be able to image all the locations. A good repeatability was found for all the conditions, except for the initial \SI{10}{\deg} of motion, which was therefore omitted from the analysis. This allowed all the measurements to be combined, as depicted in \autoref{fig:hauraix_2013}. It was found that the contributions of the tendon and muscle to plantar flexion are highly velocity and angle dependent, see \autoref{fig:hauraix_2013_contrib}. 
+\citeauthor{hauraix_shortening_2013} used ultrafast ultrasound to determine the contributions of the different components of the muscle-tendon unit during isokinetic plantar flexions \cite{hauraix_shortening_2013}. Imaging was performed at four locations, over the muscle belly of the medial gastrocnemius and the lateral gastrocnemius, and the myotendinous junction of both these muscles. Six different isokinetic angular velocities (30, 90, 150, 210, 270, and \SI{330}{\deg\per\second}) were used to determine the contributions of MTU components, while ankle angle, velocity and torque were measured. Simultaneous ultrasound imaging was performed at a maximum of \SI{1000}{\hertz}. One location per serie was imaged, hence the conditions were repeated four times to be able to image all the locations. A good repeatability was found for all the conditions, except for the initial \SI{10}{\deg} of motion, which was therefore omitted from the analysis. This allowed all the measurements to be combined, as depicted in \autoref{fig:hauraix_2013}. It was found that the contributions of tendon and muscle to plantar flexion are highly velocity and angle dependent, see \autoref{fig:hauraix_2013_contrib}. 
 
 
-% HAURAIX 2013
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\linewidth]{Figures/mtu_imaging/hauraix_2013_mtu_velocity.pdf}
-	\caption{Overview of measured data by \citeauthor{hauraix_shortening_2013} for an isokinetic velocity of \SI{330}{\deg\per\second}. Since the data over the different trials for the different imaging locations showed good repeatability, the data could be combined. \textbf{(A)} From the ankle angle the total MTU length was estimated using as kinematic model. \textbf{(B)} From the ultrasound images the location of the myotendinous junction was tracked, from which the muscle length change was estimated. \textbf{(C)} From imaging over the muscle belly, the muscle fibre length was estimated, using the tracking algorithm of \citet{cronin_automatic_2011}. \textbf{(D)} From the difference in MTU length and muscle length, the tendon length change was determined. \textbf{(E)} Similarly, the aponeurosis length change was determined by the difference in muscle length and horizontal fibre length (i.e. horizontal component of line depicted in (C). Figure adapted from \citet{hauraix_shortening_2013}}
-	\label{fig:hauraix_2013}
-\end{figure}
+	% HAURAIX 2013
+	\begin{figure}[b]
+		\centering
+		\includegraphics[width=\linewidth]{Figures/mtu_imaging/hauraix_2013_mtu_velocity.pdf}
+		\caption{Overview of measured data by \citeauthor{hauraix_shortening_2013} for an isokinetic velocity of \SI{330}{\deg\per\second}. Since the data over the different trials for the different imaging locations showed good repeatability, the data could be combined. \textbf{(A)} From the ankle angle the total MTU length was estimated using as kinematic model. \textbf{(B)} From the ultrasound images the location of the myotendinous junction was tracked, from which the muscle length change was estimated. \textbf{(C)} From imaging over the muscle belly, the muscle fibre length was estimated, using the tracking algorithm of \citet{cronin_automatic_2011}. \textbf{(D)} From the difference in MTU length and muscle length, the tendon length change was determined. \textbf{(E)} Similarly, the aponeurosis length change was determined by the difference in muscle length and horizontal fibre length (i.e. horizontal component of line depicted in (C). Figure adapted from \citet{hauraix_shortening_2013}}
+		\label{fig:hauraix_2013}
+	\end{figure}
+	
+	% HAURAIX 2013
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width=.8\linewidth]{Figures/mtu_imaging/hauraix_2013_mtu_contrib.pdf}
+		\caption{The relative contributions of tendon, fibres and aponeurosis for the different isokinetic velocity conditions, at three angle ranges. Significant differences with the fastest isokinetic condition are denoted by * ($P<0.05$), $\dag$ ($P<0.01$) and $\ddag$ ($P<0.001$). Figure adapted from \citet{hauraix_shortening_2013}}
+		\label{fig:hauraix_2013_contrib}
+	\end{figure}
 
-% HAURAIX 2013
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=.8\linewidth]{Figures/mtu_imaging/hauraix_2013_mtu_contrib.pdf}
-	\caption{The relative contributions of tendon, fibres and aponeurosis for the different isokinetic velocity conditions, at three angle ranges. Significant differences with the fastest isokinetic condition are denoted by * ($P<0.05$), $\dag$ ($P<0.01$) and $\ddag$ ($P<0.001$). Figure adapted from \citet{hauraix_shortening_2013}}
-	\label{fig:hauraix_2013_contrib}
-\end{figure}
+Similarly, \citeauthor{farcy_interaction_2014} studied the contributions of the MTU components in quick releasing of the gastrocnemius medialis, from different levels of maximum voluntary contraction (30\% to 80\% MVC) \cite{farcy_interaction_2014}. Ultrafast ultrasound imaging at \SI{2000}{\hertz} was performed with the probe location over the muscle belly, and over the myotendinous junction. Good repeatability of the measurements (high intraclass correlation coefficients and low coefficients of variation) allowed averaging of the data, and combining the data of the two different imaging locations. It was found that for all MVC conditions, the tendon contributed significantly more ($P<0.01$) to lengthening of the MTU than muscle fibres and the aponeurosis. 
+%This holds for all MVC conditions and the complete duration of the quick release trials. 
+Furthermore, the relative contribution of the three components did not change with MVC level and, except for the first \SI{5}{\milli\second}, the contribution remained constant over the trial duration.
+
+
 
 
 
 
 
 % ===========================================================================
-\subsection{Conventional imaging in reflex identification}
+\subsection{Conventional imaging of muscle and tendon}
+There is an abundance of studies using conventional ultrasound to image the muscle or tendon. \tred[For example, this has lead to the understanding that MTU length is not necessarily representative for muscle fascicle length, and thus MS activity (e.g. \cite{maas_is_2009, cronin_automatic_2011})] In addition, though the frame rate is limited, many insights relating to afferent feedback have been reported using this imaging technique. These will be discussed hereafter. 
 
 
-\subsubsection{System identification or other term to describe experiments}
+
+\subsubsection{Afferent feedback during locomotion}
 %expectation? Klint? Sinkjaer? GTO expected more than MS? Timing? Loram? 
 %No studies using ultrafast ultrasound for imaging of tendon or muscle displacement. Studies using conventional B-mode ultrasound in abundance.
+Ultrasound imaging has been used to assess the muscle fascia length during locomotion by e.g. \citeauthor{klint_afferent_2009}. By lowering a hydraulically actuated platform during locomotion, it was found that there was a depression in soleus activity (EMG) at a latency of \SI{42}{\milli\second}, while the muscle fascicle started to differ from the normal walking condition (i.e. no platform drop) after \SI{54}{\milli\second} \cite{klint_afferent_2009}. 
+
 
 
 \subsubsection{Stretch reflex}
