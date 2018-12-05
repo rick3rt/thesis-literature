@@ -134,7 +134,7 @@ The mechanical properties assessed with elastography cannot be validated \textit
 Assessing the mechanical properties of tendinous tissue is more complex than other tissue for multiple reasons. (1) Tendon tissue is stiff, resulting in high shear wave speeds (10-20 \si{\meter\per\second} \cite{cortes_continuous_2015, helfenstein-didier_vivo_2016}) which requires imaging with a very high framerate to track the shear wave propagation. (2) The shear wave wavelength ($\lambda {\sim}\SI{25}{\milli\meter}$) for the frequency range used in SSI (300-800 \si{\hertz}) is greater than the mean tendon thickness (Achilles tendon $h{\sim}\SI{4}{\milli\meter}$) \cite{brum_vivo_2014}. This results in guidance of the shear waves along and across the tendon due to successive reflections at the tendon boundaries. As a consequence, the group velocity of the shear wave is not necessarily linked to the actual shear modulus, as assumed in SSI. For this reason, a shear wave dispersion analysis in combination with a shear wave guidance model is required to assess the mechanical properties of tendons. 
 
 \subsubsection{Dispersion analysis with shear wave guidance model}
-\citeauthor{brum_vivo_2014} described a novel method to determine the viscoelastic properties of the Achilles tendon based on a transverse isotropic model, whereas in `conventional' SWS, the medium is assumed to behave fully isotropic \cite{brum_vivo_2014}. This transverse isotropic model accounted for the anisotropy in the tendon and guided shear wave propagation. The transverse isotropic properties of the tendon were described by seven parameters, of which many were assumed based on \textit{in vitro} bovine Achilles tendon data \cite{kuo_elastic_2001}. It was found that the elasticity can be determined independently of the viscosity in the parallel direction from the shear wave phase velocity dispersion curve. To determine the viscosity, the attenuation dispersion of the shear wave has to be measured. However, unbiased measurement of attenuation is hard due to effects of diffraction, and was not attempted. In the perpendicular direction, both elasticity and viscosity could be determined from the phase velocity dispersion curve. 
+\citeauthor{brum_vivo_2014} described a novel method to determine the viscoelastic properties of the Achilles tendon based on a transverse isotropic model, whereas in `conventional' SWS, the medium is assumed to behave fully isotropic \cite{brum_vivo_2014}. This transverse isotropic model accounted for the anisotropy in the tendon and guided shear wave propagation. The transverse isotropic properties of the tendon were described by seven parameters, of which many were assumed based on \textit{in vitro} bovine Achilles tendon data \cite{kuo_elastic_2001}. It was found that the elasticity can be determined independently of the viscosity in the parallel direction from the shear wave phase velocity dispersion curve \cite{nguyen_assessment_2011, brum_vivo_2014}. To determine the viscosity, the attenuation dispersion of the shear wave has to be measured. However, unbiased measurement of attenuation is hard due to effects of diffraction, and was not attempted. In the perpendicular direction, both elasticity and viscosity could be determined from the phase velocity dispersion curve. 
 
 This method was used by \citeauthor{helfenstein-didier_vivo_2016} to assess the effect of tendon stretching on shear elasticity, assess the variation of probe location (proximal versus distal) and compare the new method to conventional SSI \cite{helfenstein-didier_vivo_2016}. \autoref{fig:helfenstein_disperson_angle}a shows the dispersion curves for various ankle angles for one subject. It was found that the shear modulus significantly increased with ankle dorsiflexion ($p\leq 0.001$). The estimated shear modulus was found significantly higher with the probe at the proximal location compared to distal, regardless of ankle angle. It was found that SSI compared to the new method underestimates the shear modulus, depicted in \autoref{fig:helfenstein_disperson_angle}b and c. 
 
@@ -198,7 +198,7 @@ Especially regarding SWS, there is quite some difference in the used methods to 
 %- SSI relatively easy (Eby), but different 5G = E intead of 3 like in assumed elastic model. 
 %- SWS conversion to stiffness not reported before.
 %- this makes it perhaps more a qualitative method, based on the rheological model. measured shear wave speed and dispersion are only things that can be seen as qualitative measurements. 
-In both SSI and SWS, the tissue is assumed to behave according to a certain rheological model, but validation of these models \tred[requires additional research]. In case of SSI, a linear elastic isotropic model is used. With this material description, it is possible to estimate the shear elastic modulus from the shear wave group velocity via $\mu=\rho c_g^2$. Following this model, the Young's modulus is equal to $E = 3\, \mu$ (see \autoref{sec:us_ssi}). However, simultaneous material testing and SSI of brachialis swine muscles resulted in a linear fit where $E \approx 5\mu$ \cite{eby_validation_2013}. This shows that SSI can perform well in comparing the shear wave velocity from subject to subject, but results in a more qualitative measurement, than an quantitative assessment of material properties. For SWS, a similar study like \cite{eby_validation_2013} to compare the viscoelastic muscle properties to mechanical tests is not reported. Furthermore, the estimation of muscle force from the shear moduli described by the Voigt model and measured muscle or tendon elongation has not been shown in literature before.
+In both SSI and SWS, the tissue is assumed to behave according to a certain rheological model, but validation of these models requires additional research. In case of SSI, a linear elastic isotropic model is used. With this material description, it is possible to estimate the shear elastic modulus from the shear wave group velocity via $\mu=\rho c_g^2$. Following this model, the Young's modulus is equal to $E = 3\, \mu$ (see \autoref{sec:us_ssi}). However, simultaneous material testing and SSI of brachialis swine muscles resulted in a linear fit where $E \approx 5\mu$ \cite{eby_validation_2013}. This shows that SSI can perform well in comparing the shear wave velocity from subject to subject, but results in a more qualitative measurement, than an quantitative assessment of material properties. For SWS, a similar study like \cite{eby_validation_2013} to compare the viscoelastic muscle properties to mechanical tests is not reported. Furthermore, the estimation of muscle force from the shear moduli described by the Voigt model and measured muscle or tendon elongation has not been shown in literature before.
 % the conversion of the Voigt model parameters shear elasticity and shear viscosity to mechanical parameters to estimate muscle forces has not been reported.
 
 
@@ -210,7 +210,7 @@ The reported shear wave velocities for the passive muscle over a range of joint 
 
 It has been shown that the estimation of shear moduli using SSI varies with transducer pressure and ROI size in both muscle and tendon \cite{kot_elastic_2012}. Furthermore, the shear wave group velocity was found dependent on scanning depth and whether there was bone below the ROI \cite{ewertsen_evaluation_2016}. This calls on one hand for standardisation in performing elastography experiments, by e.g. using casts or mounts for the probe in which the pressure can be properly set and maintained, eliminating interobserver reproducibility issues (reported by e.g. \cite{aubry_biomechanical_2013}). On the other hand this shows the need for further research, e.g. to find the underlying physical principles for the variation dependent on surrounding tissue and depth. 
 
-It can be concluded that before elastography measurements can be of value in system identification, extensive research is needed to find the relation between the estimated shear wave velocity profiles and mechanical properties of muscle and tendon. However, under dynamic conditions, elastography may never be of use, despite technological progress. \tred
+It can be concluded that before elastography measurements can be of value in system identification, extensive research is needed to find the relation between the estimated shear wave velocity profiles and mechanical properties of muscle and tendon. However, under dynamic conditions, elastography may never be of use, despite technological progress. 
 
 
 %\subsection{Sources of variation in elastography assessed properties}
@@ -247,17 +247,14 @@ It can be concluded that before elastography measurements can be of value in sys
 
 % ===========================================================================
 \section{Separating proprioceptive contribution -- imaging}
-Besides elastography, normal ultrafast imaging can be used to track the elongation of muscle fibres and/or tendon. This is expected to be especially useful in understanding contribution of the different proprioceptive afferents to observed movement. 
+Besides elastography, normal ultrafast imaging can be used to track the elongation of muscle fibres, tendon and/or  myotendinous junction (MTJ). This is expected to be especially useful in understanding contribution of the different proprioceptive afferents to observed movement. 
 
-% LOCATIONS TO IMAGE
-Imaging can be done at three locations; \textbf{(1)} Over the muscle belly to obtain fibre length of one or more muscles with similar function (e.g. \cite{klint_afferent_2009, cronin_triceps_2015}) 
+Ultrafast ultrasound has been used by a number of studies to image skeletal muscle, though the majority of studies use the technology for elastography. On the other hand, ultrafast imaging has not been used to study reflexes, e.g. the stretch reflex. In this section first an overview of the findings with ultrafast imaging of the MTU wil be presented. Hereafter, some studies that used conventional ultrasound to identify the contribution of the components of the MTU (and thus the afferent activity) to reflexes and their findings will be discussed. \tred[It will then be discussed in what way ultrafast imaging can help in understanding the origin of the afferent feedback, and in what way it can help to fill the existing gap in knowledge and validation of current hypotheses.]
+%% LOCATIONS TO IMAGE
+%Imaging can be done at three locations; \textbf{(1)} Over the muscle belly to obtain fibre length of one or more muscles with similar function (e.g. \cite{klint_afferent_2009, cronin_triceps_2015}) 
+%\textbf{(2)} Muscle tendon junction, fibre and tendon length (e.g. \cite{klint_afferent_2009})
+%\textbf{(3)} Tendon to obtain tendon elongation 
 
-\textbf{(2)} Muscle tendon junction, fibre and tendon length (e.g. \cite{klint_afferent_2009})
-
-\textbf{(3)} Tendon to obtain tendon elongation 
-
-% IMPLICATION IMAGING LOCATION... 
-The imaging location 
 
 % ===========================================================================
 \subsection{Ultrafast imaging of muscle and tendon}
@@ -297,7 +294,7 @@ Furthermore, the relative contribution of the three components did not change wi
 
 % ===========================================================================
 \subsection{Conventional imaging of muscle and tendon}
-There is an abundance of studies using conventional ultrasound to image the muscle or tendon. \tred[For example, this has lead to the understanding that MTU length is not necessarily representative for muscle fascicle length, and thus MS activity (e.g. \cite{maas_is_2009, cronin_automatic_2011})] In addition, though the frame rate is limited, many insights relating to afferent feedback have been reported using this imaging technique. These will be discussed hereafter. 
+There is an abundance of studies using conventional ultrasound to image the muscle or tendon. For example, this has lead to the understanding that MTU length is not necessarily representative for muscle fascicle length, and thus MS activity, e.g. \cite{maas_is_2009, cronin_automatic_2011}. In addition, though the frame rate is limited, many insights relating to afferent feedback have been reported using this imaging technique. These will be discussed hereafter. 
 
 
 
@@ -312,7 +309,7 @@ Ultrasound imaging has been used to assess the muscle fascia length during locom
 
 
 \subsubsection{Stretch reflex}
-Tracking of muscle fascicles using conventional ultrasound has also led to new insights in the stretch reflex. \citeauthor{cronin_triceps_2015} found a poor correlation between fascicle stretch (evoked by Achilles tendon tapping and dorsiflexion by ankle dynamometer) of the \textit{triceps surae} and the short latency reflex (SRL) \cite{cronin_triceps_2015}. The poor correlation between the the SLR size and magnitude of both muscle fascicle length and velocity, were in conflict with the earlier believe that the Ia and II afferent muscle spindle activity are the main contributors to characteristic SLR EMG response (e.g. \cite{schuurmans_monosynaptic_2009}). Instead, recorded mechanical vibrations induced by the tendon taps, were thought to be the main contributor to MS Ia activity. %The tendon taps evoked vibrations in the msucle, which were believed to induce oscillations in the muscle spindles. 
+Tracking of muscle fascicles using conventional ultrasound has also led to new insights in the stretch reflex. \citeauthor{cronin_triceps_2015} found a poor correlation between fascicle stretch (evoked by Achilles tendon tapping and dorsiflexion by ankle dynamometer) of the \textit{triceps surae} and the short latency reflex (SRL) \cite{cronin_triceps_2015}. The poor correlation between the the SLR size and magnitude of both muscle fascicle length and velocity, were in conflict with the earlier believe that the Ia and II afferent muscle spindle activity are the main contributors to characteristic SLR EMG response (e.g. \cite{schuurmans_monosynaptic_2009}). Instead, recorded mechanical vibrations on the skin induced by the tendon taps, were thought to be the main contributor to MS Ia activity. %The tendon taps evoked vibrations in the msucle, which were believed to induce oscillations in the muscle spindles. 
 %Same for fascicle velocity, Ia and II afferents thus were found to not really contribute to stretch reflex. Magnitude of applied stretch was not correlated to magnitude observed stretch reflex. 
 
 
@@ -335,19 +332,34 @@ Tracking of muscle fascicles using conventional ultrasound has also led to new i
 %\end{itemize}
 
 
-Stated by Cronin: "Moreover, increasing preactivation torque was often associated with a larger SLR but smaller and/or slower fascicle stretch (Fig. 3)." Preactivation: muscle stiffer, hence elongation more by tendon, raise in tendon force, raise in Ib afferent
+To gain a better understanding in how applied mechanical perturbations result in movement, 
+
+
+
+
+Frame rate used by klint \SI{200}{\hertz}, means a resolution of $\pm \SI{2.5}{\milli\second}$ \cite{klint_afferent_2009}? 42 ms, only equals X frames. 
+
+
+Stated by Cronin: "Moreover, increasing preactivation torque was often associated with a larger SLR but smaller and/or slower fascicle stretch (Fig. 3)." Preactivation: muscle stiffer, hence elongation more by tendon, raise in MTU force, raise in Ib afferent activity? 
 
 Muscle force problems, PERHAPS TENDON THINNING?
 
+LIMITATION CRONIN: multibeam imaging, distorted estimation of fibre length, due to timing difference (number of scanning lines divided by 4 CHECK!) when using UFUS, this is not present, due to very short acquisisition time. Only when using compound imaging this may be a source of error, hence emphasizing the importance of trade off in image quality and acquisition time. However, it may be possible to perform compounding at a different rate than the actual resulting frame rate (gating) (chapter 2)
+
+
+
+It must be noted that while trying to relax some assumptions using ultrafast ultrasound, new assumptions are introduced. The current ultrafast ultrasound equipment can image a 2D plane, in which the muscle fascicle can be tracked. However, in pennate muscles, the fibers in the muscle will rotate upon active contraction, hence move out of the imaging plane \cite{finni_structural_2006}. This out of plane movement, i.e. 3D conformation of the muscle belly, also appears in tendon, and will lead to a systematic underestimation of length changes \cite{seynnes_ultrasound-based_2014}. Consequently, tracking muscle fascicle to estimate the Ia and II afferent activity can also be underestimated, possibly in a non proportional manner (though as of now the gamma activation and thus MS sensitivity remains elusive). Ultrafast ultrasound can be extended to 3D imaging, as demonstrated by \citeauthor{provost_3d_2014} by creating a 3D plane wave, and performing 3D beamforming, but this is computationaly and memory-wise very expensive \cite{provost_3d_2014}. In the future, this would allow imaging the 3D confirmation of the muscle fibers, and thus accurate estimation of muscle fibre conformation and elongation. 
+
+%When considering the complete MTU this may not directly be of influence, but when tracking muscle fascicle to estimate the Ia and II afferent activity, this may be of importance to take into account.
+%Ultrasound imaging, tracking fascicle length introduces new assumptions: fibres move out of imaging plane, but assumed fully in plane %\cite{see discussion!}
+%		- Finni - Finni (2006): During a contraction, the fibers in a pennate muscle rotate and there is shear strain in the interface between the muscle fibers (Gans, 1982; Huijing, 1999). 
+%		-> US imaging only 2D plane, so out of plane fibre rotation is not taken into account. 
+%		-  "Disregarding the 3D conformation of tendon introduces a systematic underestimation of tendon length and thus an overestimation of length changes." \cite{seynnes_ultrasound-based_2014}.
 
 
 
 
 
-
-
-
-%\newpage
 
 
 % ===========================================================================
@@ -421,3 +433,4 @@ The first study that uses ultrafast ultrasound in system identification might ha
 %x and xdot of tendon times stiffness viscosity results in force. 
 %Tendon properties known to be nonlinear, Finni 2006: “While the tendon force–length curve is non-linear, the Young’s modulus is typically derived from a linear portion of the stress–strain curve (Butler et al., 1978), with an approximate value of 1.2 or 1.5GPa (Zajac, 1989, Alexander, 2002).” 
 %Test in multiple ankle positions. ???
+
