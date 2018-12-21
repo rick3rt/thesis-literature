@@ -355,7 +355,7 @@ The proposed methods could also be used on the ultrasound data that can be acqui
 		L38-22v 18mm    & 30              & 256             & 20              & 5.1             & 69 \\
 		\bottomrule
 	\end{tabular}%
-	\label{tab:addlabel}%
+	\label{tab:transducer_specs}%
 \end{table}%
 
 \begin{wrapfigure}{r}{0.35\textwidth}
@@ -378,17 +378,14 @@ The proposed methods could also be used on the ultrasound data that can be acqui
 \subsubsection{Spatial resolution ultrafast ultrasound}
 The spatial resolution that can be achieved is largely dependent on the type of probe that is used. Furthermore, displacement analysis can be done using two techniques, that are fundamentally different. On one hand, beamformed images can be used, in which the movement of groups of pixels can be tracked. This method is used in most studies that track muscle fascicle behaviour under dynamic conditions, and can be applied to both conventional and ultrafast ultrasound (e.g. \cite{farris_ultratrack_2016, farcy_interaction_2014, hauraix_muscle_2017, af_klint_sudden_2009, cronin_triceps_2015, cronin_automatic_2011}). The spatial resolution in axial and longitudinal direction (see \autoref{fig:usresprobe}) that can be obtained with this method, is indeed dependent on the transducer (number of elements per unit length, frequency) and the number of pixels in the image. 
 
-On the other hand, the raw RF signals recorded from backscattered echoes can be used to detect displacements. This method was called `echo mechanomyography' (see \autoref{sec:ufus_muscle_tendon}) by \citet{deffieux_assessment_2008}. In mechanomyography, \tred[only] displacements in the axial (ultrasound beam) direction can be assessed, by performing 1D cross correlation on the recorded RF signals of successive backscatters. 
+\tred[draft:] On the other hand, the raw RF signals recorded from backscattered echoes can be used to detect displacements.  due to the high sampling rate of the RF data, spatial resolution in the axial direction is much higher than longitudinal (as depicted in \autoref{tab:transducer_specs}). sample rate for RF data only limited by the sample rate of the analog to digital converter in the equipment. This method was called `echo mechanomyography' (see \autoref{sec:ufus_muscle_tendon}) by \citet{deffieux_assessment_2008}. In mechanomyography, \tred[only] displacements in the axial (ultrasound beam) direction can be assessed, by performing 1D cross correlation on the recorded RF signals of successive backscatters. 
 %\tred[In comparison with tracking of muscle fibres in beamformed images (e.g. \cite{farris_ultratrack_2016}), the global velocity profiles can be regarded less meaningful. ] \tred[not necessarily less meaningfull, just showing something else. one global, one local...]
 
 % ULTRASOUND SPATIAL RESOLUTION
 (about a tenth of the ultrasound wavelength, approx. \SI{150}{\micro\meter} for a probe with a centre frequency of \SI{8}{\mega\hertz}), due to the high sampling rate of the RF data. The spatial resolution in the longitudinal (i.e. probe aperture width) direction is much lower, due to the limited number of piezoelectric transducers per unit length in the ultrasound probe, and the fact that this 
 
-
-
-larger in axial then transverse (?) direction (see \autoref{fig:usresprobe}). 
-
-influence probe frequency, width, number of elements per unit length.
+%larger in axial then transverse (?) direction (see \autoref{fig:usresprobe}). 
+%influence probe frequency, width, number of elements per unit length.
 
 
 
@@ -400,30 +397,38 @@ influence probe frequency, width, number of elements per unit length.
 
 % muscle spindle osscilation hypothesis: displacement field spectroscopy
 %\subsubsection{Muscle spindle oscillation hypothesis}
-To validate the hypothesis that muscle spindle oscillations are the main contributor to the observed intensity of the stretch reflex, some of the analysis techniques employed in SSI and SWS may be of use. In SSI, shear waves can be tracked with millimeter resolution in a multiple centimeter wide image \cite{deffieux_shear_2009}. To improve this spatial resolution to be able to perform SWS, multiple experiments are conducted, from which the velocity fields can be averaged. This results in a submillimeter resolution, which allows determining the phase difference of relatively high frequent shear waves ($100-800$\si{\hertz}) over a distance of about \SI{1}{\centi\meter} (see \autoref{sec:us_sws}). 
+To validate the hypothesis that muscle spindle oscillations are the main contributor to the observed intensity of the stretch reflex, some of the analysis techniques employed in SSI and SWS may be of use. In SSI, shear waves can be tracked with millimeter resolution in a multiple centimeter wide image \cite{deffieux_shear_2009}. To improve this spatial resolution, as is required for SWS, multiple experiments are conducted, from which the velocity fields can be averaged. This results in a submillimeter resolution, which allows determining the phase difference of relatively high frequent shear waves ($100-800$\si{\hertz}) over a distance of about \SI{1}{\centi\meter} (see \autoref{sec:us_sws}). In both SSI and SWS, the RF data is beamformed to an image, and the shear wave is tracked by cross-correlating consecutive frames. 
 
-A similar approach might be applicable to determine the oscillations of muscle spindles, by doing a frequency analysis on the displacement field of the muscle fibres. Evoking the stretch reflex with low variation between trials in one subject (i.e. high repeatability) may be an issue, since a high repeatability in motor response or SLR (M1) latency does not guarantee high repeatability in local fibre deformation (as becomes clear from the fascicle length traces for one subject in Fig. 1 of \cite{cronin_triceps_2015}). On the other hand, this experiment does not need a large probe to induce and follow the shear wave, but a smaller probe with more transducers per unit length can be used \tred[as descibed before.]
- -- XXX \tred[(superficial muscle ???), YES higher frequency probe --> more attenuation, only superficial muscle]. 
+A similar approach might be applicable to determine the oscillations of muscle spindles, by doing a frequency analysis on the displacement field of the muscle fibres. Evoking the stretch reflex with low variation between trials in one subject (i.e. high repeatability) may be an issue, since a high repeatability in motor response or SLR (M1) latency does not guarantee high repeatability in local muscle fibre deformation (as becomes clear from the fascicle length traces for one subject in Fig. 1 of \cite{cronin_triceps_2015}). 
 
-Since muscle spindles are $4-7$\si{\milli\meter} in length \cite{smith_chapter_2007}, the ROI to image can be much smaller, allowing to image only a portion of a muscle fibre. It needs to be assessed how representative this local behaviour is for the global muscle movement, and to what extend it is possible to image a single fibre with high spatial resolution. \citeauthor{deffieux_assessment_2008} showed that it is possible to reach micrometer resolution to image muscle contractions \cite{deffieux_assessment_2008}, and given the presumption that muscle spindles are sensitive to length changes larger than about \SI{5}{\micro\meter} \cite{cronin_triceps_2015}
+On the other hand, this experiment does not need a large probe to induce and follow the shear wave, but a smaller probe with a higher frequency and more transducers per unit length can be used. This does impose a limit on the muscles that can be analysed, since a the ultrasound waves with higher frequency will attenuate more (see \autoref{tab:transducer_specs}), hence only superficial muscles can be analysed.  
+% -- XXX \tred[(superficial muscle ???), YES higher frequency probe --> more attenuation, only superficial muscle]. 
+Since muscle spindles are $4-7$\si{\milli\meter} in length \cite{smith_chapter_2007}, the ROI to image can be much smaller, allowing to image only a portion of a muscle fibre. It needs to be assessed how representative this local behaviour is for the global muscle movement, and to what extend it is possible to image a single fibre with high spatial resolution. If the spatial resolution in a single experiment with a smaller, high frequency probe is sufficient, then the questionable repeatability does not form an issue any more. 
 
- (muscle spindle length $4-7$\si{\milli\meter} \cite{smith_chapter_2007}), \tred[therefore less wide ultrasound probe, i.e. more transducers per unit length increases lateral resolution REF.] Since muscle spindles are sensitive to length changes from \SI{5}{\micro\meter}. 
-In SWS shear wave has to be distinguised from steady tissue, where in this case, all movement that occurs is of interest, but the oscillations have an unknown frequency and amplitude, making it hard to separate them from possible noise (low SNR).
---> problem, out of imaging plane movement, no effect on perturbation frequency?, but has effect on estimation of amplitude oscillation (as in \cite{seynnes_ultrasound-based_2014}, underestimation fibre length). 
+Another method would be to analyse the raw RF data instead of the beamformed images. As discussed before, the spatial resolution in the axial direction is much higher due to high sample rate, and as a result \citeauthor{deffieux_assessment_2008} showed that it is possible to reach micrometer resolution to image muscle fibre widening and thinning during contractions \cite{deffieux_assessment_2008}. By performing 1D cross-correlation between consecutive backscatters (i.e. RF data frames) the displacement of the fibre boundaries in the imaging plane can be tracked. In the longitudinal direction the spatial resolution will not increase using this method, due to the dependency on the number of elements per unit length in the probe. With this method, depending on the probe orientation, the cross sectional area or the fibre thickness can be tracked. The analysis of the fibre thickness in this case will be influenced by both the pennation angle of the muscle fibres and the transducer orientation. It may not always be possible for a pennate muscle to orient the transducer in such a way that the CSA of the fibres are imaged. Deviations from the ideal imaging plane, may lead to \tred[under- or overestimation] of the fibre thickness per frame, and thus muscle spindle oscillation and hypothesised Ia and II afferent activity. 
+
+%and given the presumption that muscle spindles are sensitive to length changes larger than about \SI{5}{\micro\meter} \cite{cronin_triceps_2015}
+% (muscle spindle length $4-7$\si{\milli\meter} \cite{smith_chapter_2007}), \tred[therefore less wide ultrasound probe, i.e. more transducers per unit length increases lateral resolution REF.] Since muscle spindles are sensitive to length changes from \SI{5}{\micro\meter}. 
+%In SWS shear wave has to be distinguised from steady tissue, where in this case, all movement that occurs is of interest, but the oscillations have an unknown frequency and amplitude, making it hard to separate them from possible noise (low SNR).
+%--> problem, out of imaging plane movement, no effect on perturbation frequency?, but has effect on estimation of amplitude oscillation (as in \cite{seynnes_ultrasound-based_2014}, underestimation fibre length). 
 
 
 
 \subsubsection{Stretch reflex Golgi tendon organ feedback}
 % Ib afferent activity, MTU force hard to estimate
 %\subsubsection{}
+The Golgi tendon organ is completely overlooked in the discussion in \citet{cronin_triceps_2015}. 
 Stated by Cronin: "Moreover, increasing preactivation torque was often associated with a larger SLR but smaller and/or slower fascicle stretch (Fig. 3)." Preactivation: muscle stiffer, hence elongation more by tendon, raise in MTU force, raise in Ib afferent activity? 
-Since it is hard measure or even estimate the force in the MTU, and thus the GTO Ib afferent activity, perhaps an alternative method can be used to estimate the Ib afferent firing. % uitwerken: XXX
-Imaging at MTJ, where GTOs are positioned, in transverse plane to find tendon cross sectional area (CSA) over time.  \citeauthor{obst_three-dimensional_2014} found an observable difference in the Achilles tendon CSA between rest and at 70\% (isometric) MVC using conventional ultrasound \cite{obst_three-dimensional_2014}. Perhaps worth exploring if there exists a correlation between tendon thickness and Ib afferent (excitatory) activity. Given the fact that spatial and temporal resolution of ultrafast ultrasound is sufficient to observe the tendon deformation during various contraction conditions. 
+Since the force in the MTU is hard measure and estimates are hard to validate (noninvasively), and thus the GTO Ib afferent activity, perhaps an alternative method can be used to estimate the Ib afferent activity. % uitwerken: XXX
+
+Imaging at MTJ, where GTOs are positioned, in transverse plane to find tendon cross sectional area (CSA) over time.  \citeauthor{obst_three-dimensional_2014} found an observable difference in the Achilles tendon CSA between rest and at 70\% (isometric) MVC using conventional ultrasound \cite{obst_three-dimensional_2014}. In this study, a 3D scan was made of the tendon, by moving the probe between frames, a method that cannot be used in dynamics conditions. 
+
+Perhaps worth exploring if there exists a correlation between tendon thickness and Ib afferent (excitatory) activity. Given the fact that spatial and temporal resolution of ultrafast ultrasound is sufficient to observe the tendon deformation during various contraction conditions. 
 
 % problem with tendon thickness
 Tracking the tendon CSA during experiments as the stretch reflex does run into the issue that the tendon is moving, and thus not only the tendon thinning, but also the varying thickness of the tendon will influence the measurement ... VAGUE. This causes an error that cannot be easily discriminated from the thinning (CSA decrease/increase unkown...), tendon CSA over its complete length also unkown, and highly dependent on the state / operating point.
 
-Alternatively, the complete tendon can be imaged, and using speckle tracking the elongation of the tendon can be tracked. Then per location, the tendon thickness can be assessed. Given the fact that the spatial resolution is very high in the direction of the beam when analysing the RF data, this perhaps can be done with sufficient accuracy. I.e. being able to distinguish the elongation/shortening of the tendon and the changes in thickness (in one plane).
+Alternatively, the complete tendon can be imaged (\tred[name correct plane... not `complete']), and using speckle tracking the elongation of the tendon can be tracked. Then per location, the tendon thickness can be assessed. Given the fact that the spatial resolution is very high in the direction of the beam when analysing the RF data, this perhaps can be done with sufficient accuracy. I.e. being able to distinguish the elongation/shortening of the tendon and the changes in thickness (in one plane).
 
 
 \subsubsection{Assumptions introduced by ultrasound imaging}
@@ -500,9 +505,6 @@ The first study that uses ultrafast ultrasound in system identification might ha
 
 %Using US, there is however the problem that (depending on the equipment available) only one group of muscles (flexor or extensor) can be imaged. So when using two Hill models, the contributions of the other MTU are unknown. This can lead to wrong estimation of MTU elongation, and can lead to problems in identifying the reflexive contributions to movement (further discussed in section afferent feedback)
 %Similarly, the intrinsic contributions also become more complicated, since e.g. the intertial contribution has to be split in minimal three components (MTU1, MTU2, limb etc) (further discussed in section intrinsic feedback).
-
-
-
 
 
 %\subsubsection{Muscle-tedon unit modelling}
