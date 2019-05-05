@@ -10,7 +10,7 @@
 
 In chapter 2, two modalities of ultrafast ultrasound that can be used in system identification were described, i.e. elastography and imaging. The previous chapter described the most important assumptions present in neuromuscular models, and discussed their implications.  This chapter will discuss in what way the two modalities of ultrafast ultrasound can be used to relax the assumptions in the current neuromuscular models.
 
-The focus of this chapter will be on identification of ankle joint dynamics, since previous explorative work showed that the imaging of lower leg muscles and subsequent analysis of the ultrasound images is considered easier compared to e.g. the wrist joint, due to larger sized and fewer muscles in the lower leg \cite{ossenkoppele_ultrasound_2017}. Furthermore, due to the relatively large tendon slack length, as defined by \citeauthor{zajac_muscle_1989} as the ratio between tendon rest length and optimal muscle fibre length \cite{zajac_muscle_1989}, in the lower leg extensor and flexor muscles, interesting muscle tendon interaction can be expected. 
+The focus of this chapter will be on identification of ankle joint dynamics, since previous explorative work showed that the imaging of lower leg muscles and subsequent analysis of the ultrasound images is considered easier compared to e.g. the wrist joint, due to larger sized and fewer muscles in the lower leg \cite{ossenkoppele_ultrasound_2017}. Furthermore, due to the relatively large tendon slack length, as defined by \citeauthor{zajac_muscle_1989} as the ratio between tendon rest length and optimal muscle fibre length \cite{zajac_muscle_1989}, in the lower leg extensor and flexor muscles, interesting muscle tendon interaction can be expected.
 
 
 
@@ -386,7 +386,7 @@ On the other hand, the (beamformed) RF signals recorded from backscattered echoe
 %\tred[In comparison with tracking of muscle fibres in beamformed images (e.g. \cite{farris_ultratrack_2016}), the global velocity profiles can be regarded less meaningful. ] \tred[not necessarily less meaningfull, just showing something else. one global, one local...]
 
 % ULTRASOUND SPATIAL RESOLUTION
-The tracking of changes in the axial direction results in a much higher spatial resolution because of the high sample rate, and is approximately a tenth of the ultrasound wavelength $\lambda$ ($\lambda \approx \SI{150}{\micro\meter}$ for a probe with a centre frequency of \SI{8}{\mega\hertz}). The spatial resolution in the longitudinal (i.e. probe aperture width) direction is much lower, due to the limited number of piezoelectric transducers per unit length in the ultrasound probe, and the fact that this 
+The tracking of changes in the axial direction results in a much higher spatial resolution because of the high sample rate, and is approximately a tenth of the ultrasound wavelength $\lambda$ ($\lambda \approx \SI{150}{\micro\meter}$ for a probe with a centre frequency of \SI{8}{\mega\hertz}). The spatial resolution in the longitudinal (i.e. probe aperture width) direction is much lower, due to the limited number of piezoelectric transducers per unit length in the ultrasound probe. This results in a spatial resulution that is proportional to the element distance, for which some typical values can be found in \autoref{tab:transducer_specs}. 
 
 %larger in axial then transverse (?) direction (see \autoref{fig:usresprobe}). 
 %influence probe frequency, width, number of elements per unit length.
@@ -395,15 +395,31 @@ The tracking of changes in the axial direction results in a much higher spatial 
 
 
 \subsubsection{Separate MTU contributions}
-Linear assumption, low amplitude perturbations cause equal strain in MTU. MTU interaction purely estimated with parameters. Results of \citet{hauraix_shortening_2013} for intial 10 degrees (not reproducible) underline that this linear assumption could require validation. imaging of the MTU can one one hand be used to validate this assumption. 
+Ultrafast imaging of the MTU during system identification experiments can be used to determine the respective contribution of tendon and muscle elongation to joint rotation, similar to the experiments of \citeauthor{hauraix_shortening_2013} \cite{hauraix_shortening_2013, hauraix_muscle_2017}. In many system identification studies, no MTU interaction was modelled (i.e. implying an infinitely stiff tendon), under the assumption that for low amplitude perturbations the muscle takes up all the length changes. Findings of \citet{hauraix_shortening_2013} contradict this assumption, and show that especially for the first 10 degrees of joint rotation no reproducible MTU behaviour could be found. 
+
+These findings underline that the assumption of an infinitely stiff tendon needs validation. Ultrafast imaging of tendon and muscle fibers (e.g. with a dual ultrasound probe setup) could be used to measure the respective contributions to MTU length changes allowing this validation. In other studies that do consider MTU interactions, the MTU interaction is `found' purely by the estimated parameters. Having additional lengthening data of muscle and tendon, could again be used to validate these estimated elongations of the muscle and tendon. 
+
+% Linear assumption, low amplitude perturbations cause equal strain in MTU. MTU interaction purely estimated with parameters. Results of \citet{hauraix_shortening_2013} for intial 10 degrees (not reproducible) underline that this linear assumption could require validation. imaging of the MTU can one one hand be used to validate this assumption. 
+
+
+\subsubsection{Imaging (possible) sources of afferent feedback}
+In addition to validation of the assumptions regarding MTU interaction, imaging of the components of the MTU can aid in finding the source of afferent feedback. Imaging of the muscle fibers can give data about the fiber elgongation and velocity, which can be used as a measure for muscle spindle (MS) afferent activitity (Ia and II). The lengthening data is however not necessarily directly proportional to the contribution of MS, due to the influence of $\gamma$-motoneurons in setting the sensitivity of the central nervous system (CNS) to MS feedback. Consequently, length and velocity information of muscle fibers should be interpreted with care. The `fusimotor set' hypothesis that says that this CNS MS sensitivity is set constant for a specific motor task type could be of use in determining the contribution of MS afferent feedback to muscle activity, albeit by retaining this assumption. 
+% - fiber elongation and velocity measure for MS activity (Ia an II afferent). However influenced by $\gamma$-motoneurons. 
+
+Looking at the deformation of the tendon or myotendinous junction (MTJ) could in turn result in a possible measure for Golgi tendon organ (GTO, Ib) afferent activity. The tendon deformation (and thus suspected GTO activity) might be easier to relate to reflexive muscle activity, since afferent GTO activity is directy related to the force in the MTU \cite{crago_sampling_1982}. 
+% - tendon elongation possible measure for GTO (Ib) activity. The elongation of the tendon is then assumed to be a measure for the force in the MTU. 
+
+% resolution, therefore thinning of tendon. tendon thinning ~ GTO? problem with imaging tendon thinning.
+
+When imaging the (components of the) MTU, the difference of spatial resolution per direction can be taken into consideration. Since the spatial resolution is much higher in the 
+As described before, the spatial resolution is much higher in the axial direction than in the longitudinal direction. Herefore it may be interesting to look at the thinning or thickening of muscle fibres and tendon. 
+
+Tracking the tendon CSA during experiments as the stretch reflex does run into the issue that the tendon is moving, and thus not only the tendon thinning, but also the varying thickness of the tendon will influence the measurement ... VAGUE. This causes an error that cannot be easily discriminated from the thinning (CSA decrease/increase unkown...), tendon CSA over its complete length also unkown, and highly dependent on the state / operating point.
+
+Alternatively, the complete tendon can be imaged (\tred[name correct plane... not `complete']), and using speckle tracking the elongation of the tendon can be tracked. Then per location, the tendon thickness can be assessed. Given the fact that the spatial resolution is very high in the direction of the beam when analysing the RF data, this perhaps can be done with sufficient accuracy. I.e. being able to distinguish the elongation/shortening of the tendon and the changes in thickness (in one plane).
 
 
 \subsubsection{Separating source of afferent feedback}
-IN addition to relaxing or validating the assumptions regarding MTU interaction, imaging of the MTU can aid in finding the source of afferent feedback. 
-- fiber elongation and velocity measure for MS activity (Ia an II afferent). However influenced by $\gamma$-motoneurons. 
-- tendon elongation possible measure for GTO (Ib) activity. The elongation of the tendon is then assumed to be a measure for the force in the MTU. 
-
-As described before, the spatial resolution is much higher in the axial direction than in the longitudinal direction. Herefore it may be interesting to look at the thinning or thickening of muscle fibres and tendon. 
 
 Story of overlooking GTO by Cronin. image tendon/MTJ CSA. Probe orientation matters, since tendon movement has to be assessed, correct change in CSA at location. 
 
@@ -418,10 +434,7 @@ Imaging at MTJ, where GTOs are positioned, in transverse plane to find tendon cr
 
 Perhaps worth exploring if there exists a correlation between tendon thickness and Ib afferent (excitatory) activity. Given the fact that spatial and temporal resolution of ultrafast ultrasound is sufficient to observe the tendon deformation during various contraction conditions. 
 
-% problem with tendon thickness
-Tracking the tendon CSA during experiments as the stretch reflex does run into the issue that the tendon is moving, and thus not only the tendon thinning, but also the varying thickness of the tendon will influence the measurement ... VAGUE. This causes an error that cannot be easily discriminated from the thinning (CSA decrease/increase unkown...), tendon CSA over its complete length also unkown, and highly dependent on the state / operating point.
 
-Alternatively, the complete tendon can be imaged (\tred[name correct plane... not `complete']), and using speckle tracking the elongation of the tendon can be tracked. Then per location, the tendon thickness can be assessed. Given the fact that the spatial resolution is very high in the direction of the beam when analysing the RF data, this perhaps can be done with sufficient accuracy. I.e. being able to distinguish the elongation/shortening of the tendon and the changes in thickness (in one plane).
 % =======
 % During system identification (continuous) trials, above described measurement techniques could be used as well. By imaging the muscle belly, the muscle fibre length over time can be tracked. This data can used as a measure for Ia and II afferent activity, but due to the unknown $\gamma$ activation, does not have to be directly related to the afferent activity. Tracking of tendon elongation, CSA or thinning, could result in a measure for Ib afferent activity, which is more directly related to the true afferent activity, due to the absence of a \tred[sensitivity set system] as present in the muscle spindles. However, the integration of the Ib afferent does involve multiple interneurons, making it harder to relate motor behaviour to estimated Ib afferent.
 

@@ -9,3 +9,6 @@
 *.toc
 MAIN.synctex(busy)
 MAIN.pdf
+MAIN.fdb_latexmk
+MAIN.fls
+MAIN.loc

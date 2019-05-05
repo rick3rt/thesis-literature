@@ -117,7 +117,8 @@
       \renewcommand{\familydefault}{\sfdefault}
     \fi
     \def\largetitlefont{\fontfamily{Roboto-LF}}
-    \def\largetitleseries{\fontseries{t}}
+    % \def\largetitleseries{\fontseries{t}}     % miktex
+    \def\largetitleseries{\fontseries{thin}}    % texlive
     \def\largetitleshape{\fontshape{n}}
     \def\largetitlestyle{\largetitlefont\largetitleseries\largetitleshape}
     \def\titleshape{\fontshape{n}}
