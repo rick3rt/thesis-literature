@@ -31,5 +31,15 @@
         "yaml",
         "yml"
     ],
-    "cSpell.enabled": true
+    "cSpell.enabled": true,
+    "cSpell.words": [
+        "MTUs",
+        "Verasonics",
+        "dorsiflexion",
+        "insonification",
+        "insonifications",
+        "insonified",
+        "insonify",
+        "preactivation"
+    ]
 }

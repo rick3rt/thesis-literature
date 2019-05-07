@@ -1,7 +1,7 @@
 \chapter{Ultrafast Ultrasound Imaging}
 \label{chap:ultrafast_ultrasound}
 % Conventional ultrasound has been used for clinical examination since the 1970s. Conventional ultrasound works 
-Although the title of this literature survey and the title of this chapter would suggest that we would dive right in the domain of \textit{ultrafast} ultrasound, I first will briefly introduce the conventional technology. This makes it easier to understand the fundamental differences between the two technologies, that may seem closely related on first sight. 
+Although the title of this literature survey and the title of this chapter would suggest that we would dive right in the domain of \textit{ultrafast} ultrasound, I will first briefly introduce the conventional technology. This makes it easier to understand the fundamental differences between the two technologies, that may seem closely related on first sight. 
 
 Conventional ultrasound is based on the principles used in underwater sonar imaging. In conventional ultrasound imaging, a focused beam is generated and used to insonify the medium at specific locations. Next, the backscattered echo from this focus point is recorded, and used to generate a single vertical line of the image. This process, focused insonification and recording of the backscatter, has to be repeated for the number of desired vertical lines in the image, where more lines result in increased horizontal resolution. On the other hand, ultrafast ultrasound imaging is more similar to concepts used in optical holography \cite{tanter_ultrafast_2014}. Instead of using multiple focused insonifications, ultrafast ultrasound uses a single plane wave (i.e. unfocused) to insonify the complete region of interest in an object. From the backscatter of a single insonification, the complete image can be reconstructed.
 
@@ -100,7 +100,7 @@ with $c$ the speed of sound, assumed constant in the medium \cite{montaldo_coher
 with $\alpha(i,x,z)$ the apodization factor, depending on the location of the pixel to beamform and the element number \cite{holfort_broadband_2009}. The apodization factor weights for each pixel to reconstruct how much the raw RF signal from the individual elements has to contribute. In DAS beamforming, the apodization factor is usually based on element directivity. Incident waves with a large angle (large deviation from the perpendicular) are penalised due to their low signal-to-noise ratio (SNR) \cite{chen_improved_2018}. % In general, probe elements are more sensitive to waves with small angular deviation from the perpendicular (,  \cite{chen_improved_2018}.
 % which means that elements are more sensitive to waves received at small angles \cite{chen_improved_2018}.
 
-More recently developed beamformers, such as the \textit{minimum variance} (MV) beamformer \cite{holfort_plane_2008}, the \textit{delay multiply and sum} (DMAS) beamformer \cite{matrone_delay_2015} and \textit{Stolt's f-k migration} \cite{garcia_stolts_2013} have proven to be able to reconstruct images with better resolution and contrast than the conventional DAS beamformer. The differences are mostly caused by using data dependent apodization weights, instead of fixed apodization weights based on merely the pixel location and transducer element as used in DAS. The adaptive MV beamformer, uses apodization weights based on the frequency content of the recorded RF signals, and continuously updates these weights \cite{holfort_plane_2008}. The DMAS is a nonlinear beamformer, taking the spatial cross-correlation among all the recorded RF signals of all the transducers at each time instant \cite{matrone_delay_2015}. This again results in a data dependent beamforming by using a measure for the backscattered signal coherence. %\textcolor{red}{\textit{Stolt's f-k migration} \cite{garcia_stolts_2013}}
+More recently developed beamformers, such as the \textit{minimum variance} (MV) beamformer \cite{holfort_plane_2008}, the \textit{delay multiply and sum} (DMAS) beamformer \cite{matrone_delay_2015} and \textit{Stolt's f-k migration} \cite{garcia_stolts_2013} have proven to be able to reconstruct images with better resolution and contrast than the conventional DAS beamformer. The differences are mostly caused by using data dependent apodization weights, instead of fixed apodization weights based on merely the pixel location and transducer element as used in DAS. The adaptive MV beamformer, uses apodization weights based on the frequency content of the recorded RF signals, and continuously updates these weights \cite{holfort_plane_2008}. The DMAS is a nonlinear beamformer, taking the spatial cross-correlation among all the recorded RF signals of all the transducers at each time instant \cite{matrone_delay_2015}. This again results in a data dependent beamforming by using a measure for the backscattered signal coherence. 
 
 % \typeout{msg}
 % XXX note: use image Montaldo (\cite{montaldo_coherent_2009})?
@@ -113,18 +113,15 @@ More recently developed beamformers, such as the \textit{minimum variance} (MV) 
 \subsection{Enhancing image quality}
 A disadvantage of plane wave imaging is the loss in contrast and resolution, which is caused by the lack of focus in the transmitted wave \cite{montaldo_coherent_2009}. In order to improve the image quality, various compound imaging methods can be used. 
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=.8\linewidth]{Figures/Ultrasound/spatial_compounding.pdf}
+  \caption{Incoherent compound imaging, or real-time spatial compound imaging. Individual frames are made from a single plane wave under an angle. The new image will be composed of the newest acquired frame and the previous $n-1$ frames, with $n$ representing the number of different angles, typically between 3 and 9. Figure adapted from \citet{entrekin_real-time_2001}.}
+  \label{fig:us_spatial_compounding}
+\end{figure}
 
 \subsubsection{Incoherent wave compounding}
 By incoherently combining several consecutive frames the effect of noise can be reduced, similar to time domain averaging resulting in increased signal-to-noise ratio. This method is also referred to as real-time spatial compound imaging. Each individual frame is formed of a plane wave under an angle, by means of electronic beam steering. The waves are emitted in a predetermined sequence of angles, usually between 3 an 9 different angles. Next, the frames are combined into an image as depicted in \autoref{fig:us_spatial_compounding}. By having multiple viewing angles, artefacts resulting from one specific view angle are suppressed by the averaging step \cite{entrekin_real-time_2001}. This results in images with less speckle, clutter and other acoustic artefacts. The frame rate is not reduced, since previous recorded frames will be used to enhance the new frame. This can however lead to blurry images, when the tissue or transducer is moving too fast. Since the waves are emitted under an angle, not the entire image can be compounded, meaning that the edges of the image might still contain artefacts \cite{entrekin_real-time_2001}. 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=.8\linewidth]{Figures/Ultrasound/spatial_compounding.pdf}
-    \caption{Incoherent compound imaging, or real-time spatial compound imaging. Individual frames are made from a single plane wave under an angle. The new image will be composed of the newest acquired frame and the previous $n-1$ frames, with $n$ representing the number of different angles, typically between 3 and 9. Figure adapted from \citet{entrekin_real-time_2001}.}
-    \label{fig:us_spatial_compounding}
-\end{figure}
-
-
 
 \subsubsection{Coherent wave compounding}
 In coherent wave compounding, not a combination of beamformed frames is used to create an enhanced image, but the raw received backscattered echoes (RF signals) of multiple plane wave transmits under an angle are combined. The transmit and receive process is similar to incoherent plane wave compounding, but the processing of the received echoes is different. By emitting plane waves under a sequence of angles, the lack of focus can artificially be compensated. By changing the delays of the individual received echoes and summing them coherently, focusing can be performed synthetically at any arbitrary location as depicted in \autoref{fig:us_coherent_compounding}. 
@@ -220,7 +217,7 @@ Physicians ideally use both these Doppler modes and normal imaging (B-mode) simu
 % Standard imaging techniques today allow deep brain imaging (e.g. EEG, PET and fMRI). For example, fMRI can be used to perform functional imaging deep in the brain, even able to measure increases in blood-oxygen levels ...
 Another field in which ultrafast ultrasound shows new possibilities is in neuroscience. Standard imaging techniques today allow deep brain imaging (e.g. EEG, PET and fMRI), but their use is limited. These techniques have limitations in temporal resolution and signal-to-noise ratio at high spatial resolutions. Furthermore, the size of the imaging equipment limits its use in the operating room for monitoring brain activity \cite{tanter_ultrafast_2014}. 
 
-Conventional ultrasound (PW Doppler) is not sensitive enough to measure blood flow in small vessels in the brain, but with the introduction of ultrafast ultrasound the sensitivity is significantly increased. By using ultrafast Doppler, plane wave ultrasound can be used to measure subtle changes in blood flow in the brain, which could provide new information regarding stroke \cite{tanter_ultrafast_2014}. The use of ultrafast ultrasound in brain functional imaging is also referred to as fUltrasound, in analogy with fMRI. The disadvantage of fUltrasound is that its use is limited due to the skull distorting or even blocking the propagation of the ultrasound waves. Therefore, the application is currently limited, but shows great potential for monitoring brain activity in newborns through the fontanel window, and in adults duing neurosurgery \cite{tanter_ultrafast_2014}. 
+Conventional ultrasound (PW Doppler) is not sensitive enough to measure blood flow in small vessels in the brain, but with the introduction of ultrafast ultrasound the sensitivity is significantly increased. By using ultrafast Doppler, plane wave ultrasound can be used to measure subtle changes in blood flow in the brain, which could provide new information regarding stroke \cite{tanter_ultrafast_2014}. The use of ultrafast ultrasound in brain functional imaging is also referred to as fUltrasound, in analogy with fMRI. The disadvantage of fUltrasound is that its use is limited due to the skull distorting or even blocking the propagation of the ultrasound waves. Therefore, the application is currently limited, but shows great potential for monitoring brain activity in newborns through the fontanel window, and in adults during neurosurgery \cite{tanter_ultrafast_2014}. 
 
 
 
@@ -294,25 +291,26 @@ In reality, soft tissue is not behaving linear and isotropic, and the elastic mo
 % \subsubsection{Shear wave spectroscopy}
 In linear elastic media, the phase velocity of a shear wave is equal to its group velocity. For viscoelastic media such as breast and liver tissue, the phase velocity increases as a function of frequency (i.e. dispersion), which means that a different rheological model and measurement method has to be used to determine its material properties \cite{minin_ultrafast_2011}. In SSI, the shear modulus $\mu$ can be estimated by merely looking at the wave's group velocity, hence millimeter resolution suffices. SWS on the other hand, relies on estimation of the phase velocity which requires a higher resolution and SNR, since the amount of energy for the individual frequency components is lower than the total energy of the signal \cite{deffieux_shear_2009}. For a high SNR and resolution, it is beneficial to take a relatively large ROI of \SI{1}{\centi\meter\squared}, since smaller ROIs result in a larger variance on the estimation of the shear wave velocity. Within this ROI, the tissue is assumed to be homogeneous for the SWS analysis. Since there is about \SI{0.5}{\milli\second} of dead time after shear wave pushing, it is important to locate the ROI at a lateral distance of approximately \SI{4}{\milli\meter} from the pushing line, allowing imaging of the shear wave propagation in the complete ROI. 
 
-\citeauthor{deffieux_shear_2009} first introduced SWS, by using an experimental setup able to perform one complete SSI experiment within \SI{200}{\milli\second} (\SI{25}{\milli\second} of shear wave pushing and imaging, additional time is required for transferring data, beamforming, speckle tracking and velocity map building) \cite{deffieux_shear_2009}. This setup allowed performing 10 successive SSI experiments in 2 seconds. The 10 acquired velocity fields $u(x,z,t)$ were averaged to increase the SNR. The resulting velocity field was further averaged along the $z$ direction (depth, see \autoref{fig:us_sws_wave_propagation}), to obtain the velocity field $u(x,t)$. Taking the Fourier transform of the velocity field $u(x,t)$ results in $U(x,\omega)$, which can be divided in phase $\varphi(x,\omega)$ and amplitude $A(x,\omega)$ of the wave for each frequency $\omega$ at location $x$. 
-
 
 % Figures SWS
 \begin{figure}[t]
-% \centering
-\begin{minipage}[t]{.48\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{Figures/Ultrasound/us_sws_wave_propagation_muscle.png}
-  \captionof{figure}{Propagation of a shear wave along muscle fibres of the \textit{biceps brachii}. Two quasi-plane waves propagate in opposite direction, causing maximum relative tissue displacement of around \SI{10}{\micro\meter} between successive images at a frame rate of \SI{4000}{\hertz}. The colour scale represents the tissue velocity in the $z$ (depth) direction. The colour scale has been re-normalised for each individual image for clear visualisation of the shear wave, since the amplitude slowly decreases over time. Figure adapted from \citet{deffieux_shear_2009}.}
-  \label{fig:us_sws_wave_propagation}
-\end{minipage} $\quad$
-\begin{minipage}[t]{.48\textwidth}
-  \centering
-    \includegraphics[width=\linewidth]{Figures/Ultrasound/us_sws_phase_diff.png}
-    \caption{Concept of shear wave phase velocity estimation. The phase of the wave is measured at two locations at distance $\Delta r$. The shear wave's phase velocity $c_{\varphi}$ can be  determined by the phase shift ($\Delta \varphi = \varphi_1 - \varphi_2$), the frequency of the shear wave $\omega$ and the distance $\Delta r$. Figure adapted from \citet{chen_quantifying_2004}.}
-    \label{fig:us_sws_phase_diff}
-\end{minipage}
+  % \centering
+  \begin{minipage}[t]{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Ultrasound/us_sws_wave_propagation_muscle.png}
+    \captionof{figure}{Propagation of a shear wave along muscle fibres of the \textit{biceps brachii}. Two quasi-plane waves propagate in opposite direction, causing maximum relative tissue displacement of around \SI{10}{\micro\meter} between successive images at a frame rate of \SI{4000}{\hertz}. The colour scale represents the tissue velocity in the $z$ (depth) direction. The colour scale has been re-normalised for each individual image for clear visualisation of the shear wave, since the amplitude slowly decreases over time. Figure adapted from \citet{deffieux_shear_2009}.}
+    \label{fig:us_sws_wave_propagation}
+  \end{minipage} $\quad$
+  \begin{minipage}[t]{.48\textwidth}
+    \centering
+      \includegraphics[width=\linewidth]{Figures/Ultrasound/us_sws_phase_diff.png}
+      \caption{Concept of shear wave phase velocity estimation. The phase of the wave is measured at two locations at distance $\Delta r$. The shear wave's phase velocity $c_{\varphi}$ can be  determined by the phase shift ($\Delta \varphi = \varphi_1 - \varphi_2$), the frequency of the shear wave $\omega$ and the distance $\Delta r$. Figure adapted from \citet{chen_quantifying_2004}.}
+      \label{fig:us_sws_phase_diff}
+  \end{minipage}
 \end{figure}
+
+
+\citeauthor{deffieux_shear_2009} first introduced SWS, by using an experimental setup able to perform one complete SSI experiment within \SI{200}{\milli\second} (\SI{25}{\milli\second} of shear wave pushing and imaging, additional time is required for transferring data, beamforming, speckle tracking and velocity map building) \cite{deffieux_shear_2009}. This setup allowed performing 10 successive SSI experiments in 2 seconds. The 10 acquired velocity fields $u(x,z,t)$ were averaged to increase the SNR. The resulting velocity field was further averaged along the $z$ direction (depth, see \autoref{fig:us_sws_wave_propagation}), to obtain the velocity field $u(x,t)$. Taking the Fourier transform of the velocity field $u(x,t)$ results in $U(x,\omega)$, which can be divided in phase $\varphi(x,\omega)$ and amplitude $A(x,\omega)$ of the wave for each frequency $\omega$ at location $x$. 
 
 
 To determine the phase velocity of the shear wave per frequency, the phase difference of the individual frequency components is determined over a certain distance $\Delta x$ (the width of the ROI). This way the phase velocity for frequency $\omega$ can be approximated by \cite{chen_quantifying_2004},
