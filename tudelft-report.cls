@@ -69,6 +69,7 @@
 \RequirePackage{xkeyval}
 \RequirePackage[export]{adjustbox}
 \def\@largetitlesize{96pt}
+% \def\@largetitlesize{12pt} % RW
 
 \ifxetex
     %% If the document is compiled with XeLaTeX, we load the TU Delft house
@@ -441,17 +442,19 @@
           \node at (front top left)[anchor=north west,inner sep=\@cover@margin]{
              \begin{minipage}[t][\@cover@fronttextheight]{\@cover@fronttextwidth}
                  %% Print the title and optional subtitle at the top in white.
-                   {\titlefont\color{\@titlecolor}\fontsize{58}{58}\selectfont\@title}
+                 \begin{flushleft} % edit RW: flushleft
+                   {\titlefont\color{\@titlecolor}\fontsize{42}{50}\selectfont\@title} % edit RW: original: 58 58
+                 \end{flushleft}
                     \ifx\@subtitle\undefined\else
 %                     \\[3mm]
                      \vfill
                      
-                     {\titlefont\color{\@subtitlecolor}\fontsize{52}{52}\selectfont\@subtitle}
+                     {\titlefont\color{\@subtitlecolor}\fontsize{36}{36}\selectfont\@subtitle} % edit RW: original: 52 52 
                    \fi
                  %% Print the author.
                    \vfill
                   
-                   {\titlefont\color{\@authorcolor}\fontsize{52}{52}\selectfont\@author}
+                   {\titlefont\color{\@authorcolor}\fontsize{36}{36}\selectfont\@author} % edit RW: original: 52 52 
                    \ifx\@cover@text\undefined\else
                      \vfill
                      
